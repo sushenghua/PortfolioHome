@@ -4,8 +4,8 @@ Auckland, New Zealand · [shenghua.su@gmail.com](mailto:shenghua.su@gmail.com) �
 
 I work on two tracks:
 
-- **Embedded firmware** — ESP32, STM32, SAMD21, nRF52, Raspberry Pi; FreeRTOS / ESP-IDF and Zephyr / nRF Connect SDK; multi-task RTOS architectures, BLE, MQTT, OTA, sensor / display / power drivers; host-based unit + integration + HIL test discipline; Nordic PPK2 power profiling.
-- **Web / mobile** — React, Next.js (App Router), TypeScript; Capacitor (iOS / Android) with BLE; Mapbox, MongoDB, FastAPI / Node.js backends; Vitest with CI coverage gates, `fast-check` property tests, MSW for fetch-boundary mocking, Playwright E2E.
+- **Embedded firmware** — ESP32, STM32, SAMD21, nRF52, Raspberry Pi; FreeRTOS / ESP-IDF, Zephyr / nRF Connect SDK, and bare-metal Cortex-M7 audio; multi-task RTOS architectures, real-time DSP, BLE, MQTT, OTA, sensor / display / power drivers; host-based unit + integration + HIL test discipline; Nordic PPK2 power profiling.
+- **Web / mobile** — React, Next.js (App Router), TypeScript; Capacitor (iOS / Android) with BLE; React Native / Expo with native C++ audio modules over JSI; Mapbox, MongoDB, FastAPI / Node.js backends; Vitest with CI coverage gates, `fast-check` property tests, MSW for fetch-boundary mocking, Playwright E2E.
 
 This repo is the index. Each linked project below has its own repo (some are private — happy to share source on request).
 
@@ -15,10 +15,11 @@ This repo is the index. Each linked project below has its own repo (some are pri
 
 ### Embedded firmware
 
-- **MCUs & SBCs:** ESP32 (ESP-IDF), nRF52832 (Cortex-M4), STM32F103 (Cortex-M3), SAMD21 (Cortex-M0+), ATmega328P, Raspberry Pi
-- **RTOS & SDKs:** FreeRTOS, ESP-IDF, Zephyr / nRF Connect SDK (devicetree, Kconfig, west); exposure to STM32 HAL and CMSIS-DSP
-- **Protocols & connectivity:** SPI, I2C (multiplexed), UART, DMA, WiFi, BLE (NimBLE + Zephyr BT host), HTTP / WebSocket, MQTT (QoS 0/1/2, TLS)
-- **Sensors & ICs:** PM2.5 / CO2 / temperature-humidity / light / IMU drivers, TFT and OLED display drivers, battery-management ICs
+- **MCUs & SBCs:** ESP32 / ESP32-S3 (ESP-IDF), STM32H750 (Cortex-M7, Daisy Seed), nRF52832 (Cortex-M4), STM32F103 (Cortex-M3), SAMD21 (Cortex-M0+), ATmega328P, Raspberry Pi
+- **RTOS & SDKs:** FreeRTOS, ESP-IDF, Zephyr / nRF Connect SDK (devicetree, Kconfig, west), bare-metal libDaisy / DaisySP; exposure to STM32 HAL and CMSIS-DSP
+- **Protocols & connectivity:** SPI, I2C (multiplexed), UART, DMA, SDMMC, I²S / SAI, USB host (MIDI + HID), WiFi (STA + SoftAP, mDNS), BLE (NimBLE + Zephyr BT host), HTTP / WebSocket, MQTT (QoS 0/1/2, TLS)
+- **Sensors & ICs:** PM2.5 / CO2 / temperature-humidity / light / IMU drivers, TFT and OLED display drivers (incl. LVGL on capacitive-touch LCD), audio codecs and Class-D I²S amps, battery-management ICs
+- **Real-time audio / DSP:** 48 kHz audio ISR within a 1 ms budget, WSOLA time-stretch, per-stem FX chains, Schroeder–Moorer and Dattorro reverbs, polyBLEP synth, SD-streamed playback rings — host-tested portable C++ DSP library
 - **Test & verification:** Unit, integration (with subsystem fakes), and hardware-in-loop tests via Zephyr `twister` and ESP-IDF Unity; oscilloscope, logic analyser, Nordic PPK2 power profiler
 - **PCB & hardware:** Schematic reading and design, component selection, RC filter design for input conditioning
 - **Languages:** C++, C, Python (incl. C extensions)
@@ -26,7 +27,7 @@ This repo is the index. Each linked project below has its own repo (some are pri
 ### Web / mobile
 
 - **Frontend:** TypeScript, React, Next.js (App Router, SSR / SSG / ISR), HTML5, CSS3, Tailwind CSS
-- **Mobile:** Capacitor (iOS / Android), React Native, BLE via `@capacitor-community/bluetooth-le`
+- **Mobile:** Capacitor (iOS / Android), React Native / Expo (custom dev client, EAS, Expo Modules API + JSI native C++ modules), BLE via `@capacitor-community/bluetooth-le` and `react-native-ble-plx`
 - **UI engineering:** Design systems, component libraries, accessible UI (WCAG, ARIA, keyboard navigation), Lighthouse 90+ shipped
 - **State & data:** React Query, Zustand, Mapbox GL JS, D3.js, React Flow
 - **Testing & QA:** Vitest with `@vitest/coverage-v8` and CI coverage gates, property-based tests via `fast-check`, MSW, Playwright E2E
@@ -38,9 +39,13 @@ This repo is the index. Each linked project below has its own repo (some are pri
 
 ## Projects — embedded firmware
 
+### [`RoamoodDemo`](https://github.com/sushenghua/RoamoodDemo) — embedded slice
+
+Roamood is a portable AI remix instrument: a phone app generates and arranges music stems with cloud AI, streams them to a handheld unit, and the unit performs them live. Two firmwares: a **Daisy Seed (STM32H750, Cortex-M7 @ 480 MHz)** bare-metal C++ audio master running 4 stems × (WSOLA time-stretch → tone → EQ → fader → echo → roll → gate → flanger → crush) + an 8-voice polyBLEP synth + a Dattorro / Schroeder master reverb, measured at ~0.4 ms of a 1 ms 48 kHz callback while streaming a backing track from SD; and an **ESP32-S3 (ESP-IDF 5.5 / FreeRTOS)** comms + UI node handling WiFi / BLE (NimBLE) coexistence, USB-host MIDI / HID, and an LVGL touch UI, linked to the Daisy over UART 1 Mbps (CRC16-framed) + SPI 8 MHz DMA. Contract-first protocol docs on every seam, shared header-only mirrors compiled into both firmwares, wireless OTA for both, and bench-measured bus throughput / SD signal-integrity / ISR-budget notes. Showcase repo — docs and media; the companion mobile app is described in the web / mobile section below.
+
 ### [`CoolingDockNRF`](https://github.com/sushenghua/CoolingDockNRF)
 
-Zephyr / nRF Connect SDK firmware port of the ESP32-C3 CoolingDock product onto the Nordic nRF52832 DK. Wire-compatible with the original Capacitor frontend — same UUIDs, JSON shapes, MTU, so the existing app runs against this firmware unmodified. Includes a `twister`-driven test pyramid (unit + integration with kernel / NVS / `nrfx` fakes + Python HIL smoke) and a [PPK2 power-profile guide](https://github.com/sushenghua/CoolingDockNRF/blob/main/doc/ppk2_profile.md) that landed a 74 % baseline-current reduction (1.45 mA → 377 µA) after diagnosing the UART driver as the dominant idle-current source.
+Zephyr / nRF Connect SDK firmware port of the ESP32-C3 CoolingDock product onto the Nordic nRF52832 DK. Wire-compatible with the original Capacitor frontend — same UUIDs, JSON shapes, MTU, so the existing app runs against this firmware unmodified. Includes a `twister`-driven test pyramid (unit + integration with kernel / NVS / `nrfx` fakes + Python HIL smoke) and a [PPK2 power-profile guide](https://github.com/sushenghua/CoolingDockNRF/blob/main/doc/ppk2_profile.md) that landed a 74 % baseline-current reduction (1.45 mA → 381 µA) after diagnosing the UART driver as the dominant idle-current source.
 
 ### [`CoolingDockDemo`](https://github.com/sushenghua/CoolingDockDemo)
 
@@ -64,6 +69,10 @@ ESP32 dehumidifier with dual-zone hysteresis control — two SHT3x sensors drivi
 ---
 
 ## Projects — web / mobile
+
+### [`RoamoodDemo`](https://github.com/sushenghua/RoamoodDemo) — mobile slice
+
+React Native + TypeScript (Expo custom dev client, EAS) companion app for the Roamood hardware above. Cloud-AI stem generation (Stable Audio 2, provider-pluggable), a mixer / arranger with timeline, FX, and time-stretch, and Skia-rendered waveform tiles. The audio engine is Superpowered C++ in a local Expo native module driven over JSI so per-frame control values bypass the JS bridge and no PCM ever crosses it — implementing the same per-stem effect chain, macro curves, and beat clock as the device firmware so what you hear in the app is what the hardware plays. Device link over BLE (`react-native-ble-plx`) for control and HTTP over WiFi (STA or the device's own SoftAP, mDNS discovery) for bulk stems. Jest for pure DSP / format logic plus C++ host tests linking the real audio SDK on macOS. The repo includes an app walkthrough video and a live-set recording.
 
 ### [`InternetConnectionControlDemo`](https://github.com/sushenghua/InternetConnectionControlDemo) — web / mobile slice
 
