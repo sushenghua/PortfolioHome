@@ -61,7 +61,7 @@ I work on two tracks: embedded firmware (ESP32, STM32, nRF52) and web / mobile a
 
 Roamood is a handheld music instrument. A phone app generates stems with cloud AI and sends them to the device. The device mixes and performs them live with no phone attached. The repo holds the design docs, photos, and two videos.
 
-- Audio MCU: Daisy Seed (STM32H750, Cortex-M7 at 480 MHz), bare-metal C++. Four stems, each with time-stretch (WSOLA), tone, EQ, fader, echo, roll, gate, flanger, and crush. An 8-voice polyBLEP synth and a Dattorro or Schroeder master reverb.
+- Audio MCU: Daisy Seed (STM32H750, Cortex-M7 at 480 MHz), bare-metal C++. Four stems, each with time-stretch, tone, EQ, fader, echo, roll, gate, flanger, and crush. An 8-voice synth and a master reverb.
 - Measured: about 0.4 ms worst case inside a 1 ms, 48 kHz audio callback while loading stems from SD during playback.
 - Front-end MCU: ESP32-S3 on ESP-IDF 5.5 and FreeRTOS. WiFi and BLE (NimBLE) together, USB host for MIDI and HID, LVGL touch UI. Linked to the Daisy over 1 Mbps UART with CRC16 frames and 8 MHz SPI with DMA.
 - Both firmwares update over the air. The protocols between the two MCUs and the app are documented, and the same header files are compiled into both firmwares.
