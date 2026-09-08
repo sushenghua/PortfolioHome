@@ -18,24 +18,35 @@ I work on two tracks: embedded firmware (ESP32, STM32, nRF52) and web / mobile a
 - [usgaweb.vercel.app/students](https://usgaweb.vercel.app/students) — live student grade analysis site with sample data. Sign in with user `admin`, password `admin`.
 - [`application_ui`](https://github.com/sushenghua/application_ui) — screenshots from shipped and recent apps, including some older native iOS and Android work.
 
-The pinned repos on [github.com/sushenghua](https://github.com/sushenghua) should match this list: `RoamoodDemo`, `CoolingDockNRF`, `InternetConnectionControlDemo`, `application_ui`, plus this index.
 
 ---
 
 ## Skills snapshot
 
-Every item here appears in a linked repo or live site. The last column says where.
+### Embedded firmware
 
-| Area | What | Where to see it |
-|---|---|---|
-| MCUs and boards | ESP32 (C3, C6, S3), STM32H750 (Daisy Seed), nRF52832, Raspberry Pi | ESP32: `IoT_ESP32_Dehumidifier`, `InternetConnectionControlDemo`; STM32: `RoamoodDemo`; nRF52: `CoolingDockNRF`; Raspberry Pi: mining rig project below |
-| RTOS and SDKs | FreeRTOS, ESP-IDF, Zephyr / nRF Connect SDK (devicetree, Kconfig, west), bare-metal Cortex-M7 audio | `IoT_ESP32_Dehumidifier`, `CoolingDockNRF`, `RoamoodDemo` |
-| Buses and radios | UART, SPI, I2C, USB host (MIDI and HID), BLE (NimBLE and Zephyr host), WiFi, MQTT | UART / SPI / USB: `RoamoodDemo`; I2C and BLE: `CoolingDockNRF`; WiFi and MQTT: `IoT_ESP32_Dehumidifier` |
-| Testing | Host-based unit and integration tests with subsystem fakes, hardware-in-loop smoke tests | `CoolingDockNRF` (`tests/`) |
-| Power and bench work | Nordic PPK2 current profiling, oscilloscope checks, bus and SD throughput measurements | `CoolingDockNRF` (`doc/ppk2_profile.md`), `RoamoodDemo` (`docs/04-engineering-notes.md`) |
-| Web | React, Next.js, TypeScript, Node.js | trip planner (live), grade analysis site (live), `InternetConnectionControlDemo` console (screenshots) |
-| Mobile | Capacitor (iOS / Android), React Native / Expo | Capacitor: `InternetConnectionControlDemo`, `CoolingDockDemo`; React Native: `RoamoodDemo` app |
-| Languages | C, C++, TypeScript, Python | across the repos above |
+| Area | What |
+|---|---|
+| MCUs and boards | ESP32 (C3, C6, S3), STM32H750 (Daisy Seed), nRF52832, Raspberry Pi |
+| RTOS and SDKs | FreeRTOS, ESP-IDF, Zephyr / nRF Connect SDK (devicetree, Kconfig, west), bare-metal Cortex-M7 audio |
+| Buses and radios | UART, SPI, I2C, USB host (MIDI and HID), BLE (NimBLE and Zephyr host), WiFi, MQTT |
+| Testing | Host-based unit and integration tests with subsystem fakes, hardware-in-loop smoke tests |
+| Power and bench work | Nordic PPK2 current profiling, oscilloscope checks, bus and SD throughput measurements |
+| Languages | C, C++, Python |
+
+### Web / mobile
+
+| Area | What |
+|---|---|
+| Frontend | TypeScript, JavaScript, React, Next.js, HTML5, CSS3, Tailwind CSS |
+| Mobile | Capacitor (iOS / Android), React Native + Expo (dev client, EAS) |
+| UI engineering | Design systems, component libraries, accessible and responsive UI, form validation (Zod) |
+| State and data | React Query, Zustand, D3.js, Mapbox GL JS, React Flow |
+| Testing and QA | Vitest unit tests with CI coverage gates, fast-check property-based tests, MSW request mocking, Playwright E2E, Lighthouse performance audits |
+| AI-assisted development | Claude Code and other AI coding assistants for project planning, iterative development, automated testing, issue tracking, and CI/CD integration |
+| Backend and APIs | Node.js, Python (FastAPI), RESTful APIs, GraphQL, JWT and session authentication, API contract design |
+| Data | MySQL, MongoDB, Redis, SQLite; schema design, indexing, aggregation |
+| Cloud and DevOps | AWS (EC2, VPC, ALB, RDS, CloudFormation), Docker, CI/CD, Git, Linux |
 
 ---
 
@@ -121,10 +132,29 @@ Earlier ESP-IDF C++ project (2023). Two SHT3x sensors, each switching its own fa
 
 ## Projects — web / mobile
 
+### [`RoamoodDemo`](https://github.com/sushenghua/RoamoodDemo) — mobile app
+
+<p align="center">
+  <a href="https://github.com/sushenghua/RoamoodDemo"><img src="https://raw.githubusercontent.com/sushenghua/RoamoodDemo/main/media/app/mixer.png" alt="Roamood app mixer with four lanes and waveform tiles" width="200"></a>
+  <a href="https://github.com/sushenghua/RoamoodDemo"><img src="https://raw.githubusercontent.com/sushenghua/RoamoodDemo/main/media/app/fx-drawer.png" alt="Roamood app with a lane's effects drawer open" width="200"></a>
+  <a href="https://github.com/sushenghua/RoamoodDemo"><img src="https://raw.githubusercontent.com/sushenghua/RoamoodDemo/main/media/app/bind1.png" alt="Roamood app pad controller bindings with a 4 by 4 pad grid" width="200"></a>
+</p>
+
+React Native + TypeScript app for the Roamood device, built with an Expo custom dev client and EAS. It generates stems with cloud AI, currently Stable Audio 2 behind a provider interface, arranges them on a timeline with effects and time-stretch, and pushes them to the device. The audio engine is Superpowered C++ in a local Expo module driven over JSI, so control values skip the JS bridge and no audio samples cross it. It runs the same effect chain and beat clock as the firmware. BLE for control, HTTP over WiFi or the device's own access point for stem transfer. Jest for DSP and format logic, C++ host tests on macOS. The repo README embeds a walkthrough video.
+
+### [`InternetConnectionControlDemo`](https://github.com/sushenghua/InternetConnectionControlDemo) — web console and mobile app
+
+<p align="center">
+  <a href="https://github.com/sushenghua/InternetConnectionControlDemo"><img src="https://raw.githubusercontent.com/sushenghua/InternetConnectionControlDemo/main/docs/screen-shot/webapp-screen1.png" alt="Parent control web console with weekday and weekend rules" height="420"></a>
+  <a href="https://github.com/sushenghua/InternetConnectionControlDemo"><img src="https://raw.githubusercontent.com/sushenghua/InternetConnectionControlDemo/main/docs/screen-shot/mobileapp-screen2.png" alt="Mobile app listing router clients with block and unblock buttons" height="420"></a>
+</p>
+
+A self-hosted Next.js parental-control console and a Capacitor companion app (iOS so far), paired with the ESP32-C6 firmware above. The console has a router client interface with UniFi and Asus implementations, cookie-session auth with router credentials stored encrypted, and a device matcher that scores hostname, OUI, and vendor so a device keeps its identity when its MAC address changes. The repo holds screenshots of both apps.
+
 ### Trip Planner Map — [trip-planner-map.vercel.app](https://trip-planner-map.vercel.app)
 
 <p align="center">
-  <a href="https://trip-planner-map.vercel.app"><img src="https://raw.githubusercontent.com/sushenghua/application_ui/main/images/tpm_ui2.jpg" alt="Trip planner map on a phone" width="200"></a>
+  <a href="https://trip-planner-map.vercel.app"><img src="https://raw.githubusercontent.com/sushenghua/application_ui/main/images/tpm_ui2.jpg" alt="Trip planner map on a phone" width="240"></a>
 </p>
 
 Next.js, Mapbox GL JS, MongoDB, React Query, Zustand. Add stops, see the route, and on a phone the trip list becomes a bottom sheet. AI trip suggestions are available after sign-in.
@@ -141,30 +171,11 @@ Grade and programme management for a graduate ICT school. Sign in with user `adm
 
 <!-- TODO image: desktop screenshot of the students table signed in as the demo account (sample data, no real names), about 1200 px wide, saved as images/sga-students.png in this repo. -->
 
-### [`RoamoodDemo`](https://github.com/sushenghua/RoamoodDemo) — mobile app
-
-<p align="center">
-  <a href="https://github.com/sushenghua/RoamoodDemo"><img src="https://raw.githubusercontent.com/sushenghua/RoamoodDemo/main/media/app/mixer.png" alt="Roamood app mixer with four lanes and waveform tiles" width="200"></a>
-  <a href="https://github.com/sushenghua/RoamoodDemo"><img src="https://raw.githubusercontent.com/sushenghua/RoamoodDemo/main/media/app/fx-drawer.png" alt="Roamood app with a lane's effects drawer open" width="200"></a>
-  <a href="https://github.com/sushenghua/RoamoodDemo"><img src="https://raw.githubusercontent.com/sushenghua/RoamoodDemo/main/media/app/bind1.png" alt="Roamood app pad controller bindings with a 4 by 4 pad grid" width="200"></a>
-</p>
-
-React Native + TypeScript app for the Roamood device, built with an Expo custom dev client and EAS. It generates stems with cloud AI, currently Stable Audio 2 behind a provider interface, arranges them on a timeline with effects and time-stretch, and pushes them to the device. The audio engine is Superpowered C++ in a local Expo module driven over JSI, so control values skip the JS bridge and no audio samples cross it. It runs the same effect chain and beat clock as the firmware. BLE for control, HTTP over WiFi or the device's own access point for stem transfer. Jest for DSP and format logic, C++ host tests on macOS. The repo README embeds a walkthrough video.
-
-### [`InternetConnectionControlDemo`](https://github.com/sushenghua/InternetConnectionControlDemo) — web console and mobile app
-
-<p align="center">
-  <a href="https://github.com/sushenghua/InternetConnectionControlDemo"><img src="https://raw.githubusercontent.com/sushenghua/InternetConnectionControlDemo/main/docs/screen-shot/webapp-screen1.png" alt="Parent control web console with weekday and weekend rules" width="260"></a>
-  <a href="https://github.com/sushenghua/InternetConnectionControlDemo"><img src="https://raw.githubusercontent.com/sushenghua/InternetConnectionControlDemo/main/docs/screen-shot/mobileapp-screen2.png" alt="Mobile app listing router clients with block and unblock buttons" width="150"></a>
-</p>
-
-A self-hosted Next.js parental-control console and a Capacitor companion app (iOS so far), paired with the ESP32-C6 firmware above. The console has a router client interface with UniFi and Asus implementations, cookie-session auth with router credentials stored encrypted, and a device matcher that scores hostname, OUI, and vendor so a device keeps its identity when its MAC address changes. The repo holds screenshots of both apps.
-
 ### [`application_ui`](https://github.com/sushenghua/application_ui)
 
 <p align="center">
-  <a href="https://github.com/sushenghua/application_ui#dex-frontend-complex-web-ui"><img src="https://raw.githubusercontent.com/sushenghua/application_ui/main/images/web_ui_complex.jpg" alt="DEX trading front end" width="420"></a>
-  <a href="https://github.com/sushenghua/application_ui#roamood"><img src="https://raw.githubusercontent.com/sushenghua/application_ui/main/images/Roamood_ui1.png" alt="Roamood mobile app track editor" width="130"></a>
+  <a href="https://github.com/sushenghua/application_ui#dex-frontend-complex-web-ui"><img src="https://raw.githubusercontent.com/sushenghua/application_ui/main/images/web_ui_complex.jpg" alt="DEX trading front end" height="320"></a>
+  <a href="https://github.com/sushenghua/application_ui#roamood"><img src="https://raw.githubusercontent.com/sushenghua/application_ui/main/images/Roamood_ui1.png" alt="Roamood mobile app track editor" height="320"></a>
 </p>
 
 Screenshots from apps I have built: Roamood, the parental-control console, the CoolingDock app, the trip planner, the grade analysis site, a DEX trading front end, and some older native work (an iOS game in Cocos2d, shown as a video, and an Android battery app).
