@@ -1,97 +1,171 @@
-# Shenghua Su — Engineering Portfolio
+# Woody Shenghua Su — Engineering Portfolio
 
 Auckland, New Zealand · [shenghua.su@gmail.com](mailto:shenghua.su@gmail.com) · GitHub [@sushenghua](https://github.com/sushenghua)
 
-I work on two tracks:
+I work on two tracks: embedded firmware (ESP32, STM32, nRF52) and web / mobile apps in TypeScript (React, Next.js, Capacitor, React Native). This page is the index. Each project below links to its own repo or live site. Some repos hold docs, photos, and measurements rather than code.
 
-- **Embedded firmware** — ESP32, STM32, SAMD21, nRF52, Raspberry Pi; FreeRTOS / ESP-IDF, Zephyr / nRF Connect SDK, and bare-metal Cortex-M7 audio; multi-task RTOS architectures, real-time DSP, BLE, MQTT, OTA, sensor / display / power drivers; host-based unit + integration + HIL test discipline; Nordic PPK2 power profiling.
-- **Web / mobile** — React, Next.js (App Router), TypeScript; Capacitor (iOS / Android) with BLE; React Native / Expo with native C++ audio modules over JSI; Mapbox, MongoDB, FastAPI / Node.js backends; Vitest with CI coverage gates, `fast-check` property tests, MSW for fetch-boundary mocking, Playwright E2E.
+## Start here
 
-This repo is the index. Each linked project below has its own repo (some are private — happy to share source on request).
+**Embedded firmware**
+
+- [`RoamoodDemo`](https://github.com/sushenghua/RoamoodDemo) — handheld audio device with real-time DSP on an STM32H750 and an ESP32-S3 front end. Docs, bench measurements, and two videos.
+- [`CoolingDockNRF`](https://github.com/sushenghua/CoolingDockNRF) — Zephyr / nRF52832 port of a product firmware, with host-run unit and integration tests, a Python HIL smoke test, and a PPK2 power write-up.
+- [`InternetConnectionControlDemo`](https://github.com/sushenghua/InternetConnectionControlDemo) — ESP32-C6 device that controls home routers, plus a web console and a mobile app. Docs and screenshots.
+
+**Web / mobile (TypeScript)**
+
+- [trip-planner-map.vercel.app](https://trip-planner-map.vercel.app) — live Next.js and Mapbox trip planner. Works on phone-sized screens.
+- [usgaweb.vercel.app/students](https://usgaweb.vercel.app/students) — live student grade analysis site with sample data. Sign in with user `admin`, password `admin`.
+- [`application_ui`](https://github.com/sushenghua/application_ui) — screenshots from shipped and recent apps, including some older native iOS and Android work.
+
+The pinned repos on [github.com/sushenghua](https://github.com/sushenghua) should match this list: `RoamoodDemo`, `CoolingDockNRF`, `InternetConnectionControlDemo`, `application_ui`, plus this index. A draft profile README that routes visitors here is in [`PROFILE_README.md`](PROFILE_README.md).
 
 ---
 
 ## Skills snapshot
 
-### Embedded firmware
+Every item here appears in a linked repo or live site. The last column says where.
 
-- **MCUs & SBCs:** ESP32 / ESP32-S3 (ESP-IDF), STM32H750 (Cortex-M7, Daisy Seed), nRF52832 (Cortex-M4), STM32F103 (Cortex-M3), SAMD21 (Cortex-M0+), ATmega328P, Raspberry Pi
-- **RTOS & SDKs:** FreeRTOS, ESP-IDF, Zephyr / nRF Connect SDK (devicetree, Kconfig, west), bare-metal libDaisy / DaisySP; exposure to STM32 HAL and CMSIS-DSP
-- **Protocols & connectivity:** SPI, I2C (multiplexed), UART, DMA, SDMMC, I²S / SAI, USB host (MIDI + HID), WiFi (STA + SoftAP, mDNS), BLE (NimBLE + Zephyr BT host), HTTP / WebSocket, MQTT (QoS 0/1/2, TLS)
-- **Sensors & ICs:** PM2.5 / CO2 / temperature-humidity / light / IMU drivers, TFT and OLED display drivers (incl. LVGL on capacitive-touch LCD), audio codecs and Class-D I²S amps, battery-management ICs
-- **Real-time audio / DSP:** 48 kHz audio ISR within a 1 ms budget, WSOLA time-stretch, per-stem FX chains, Schroeder–Moorer and Dattorro reverbs, polyBLEP synth, SD-streamed playback rings — host-tested portable C++ DSP library
-- **Test & verification:** Unit, integration (with subsystem fakes), and hardware-in-loop tests via Zephyr `twister` and ESP-IDF Unity; oscilloscope, logic analyser, Nordic PPK2 power profiler
-- **PCB & hardware:** Schematic reading and design, component selection, RC filter design for input conditioning
-- **Languages:** C++, C, Python (incl. C extensions)
-
-### Web / mobile
-
-- **Frontend:** TypeScript, React, Next.js (App Router, SSR / SSG / ISR), HTML5, CSS3, Tailwind CSS
-- **Mobile:** Capacitor (iOS / Android), React Native / Expo (custom dev client, EAS, Expo Modules API + JSI native C++ modules), BLE via `@capacitor-community/bluetooth-le` and `react-native-ble-plx`
-- **UI engineering:** Design systems, component libraries, accessible UI (WCAG, ARIA, keyboard navigation), Lighthouse 90+ shipped
-- **State & data:** React Query, Zustand, Mapbox GL JS, D3.js, React Flow
-- **Testing & QA:** Vitest with `@vitest/coverage-v8` and CI coverage gates, property-based tests via `fast-check`, MSW, Playwright E2E
-- **Backend & APIs:** Python (FastAPI), Node.js, RESTful APIs, GraphQL, JWT authentication
-- **Data & cloud:** MySQL, MongoDB, Redis, SQLite; AWS (EC2, VPC, ALB, RDS, CloudFormation), Vercel, Docker
-- **Languages:** TypeScript, JavaScript (ES6+), Python
+| Area | What | Where to see it |
+|---|---|---|
+| MCUs and boards | ESP32 (C3, C6, S3), STM32H750 (Daisy Seed), nRF52832, Raspberry Pi | ESP32: `IoT_ESP32_Dehumidifier`, `InternetConnectionControlDemo`; STM32: `RoamoodDemo`; nRF52: `CoolingDockNRF`; Raspberry Pi: mining rig project below |
+| RTOS and SDKs | FreeRTOS, ESP-IDF, Zephyr / nRF Connect SDK (devicetree, Kconfig, west), bare-metal Cortex-M7 audio | `IoT_ESP32_Dehumidifier`, `CoolingDockNRF`, `RoamoodDemo` |
+| Buses and radios | UART, SPI, I2C, USB host (MIDI and HID), BLE (NimBLE and Zephyr host), WiFi, MQTT | UART / SPI / USB: `RoamoodDemo`; I2C and BLE: `CoolingDockNRF`; WiFi and MQTT: `IoT_ESP32_Dehumidifier` |
+| Testing | Host-based unit and integration tests with subsystem fakes, hardware-in-loop smoke tests | `CoolingDockNRF` (`tests/`) |
+| Power and bench work | Nordic PPK2 current profiling, oscilloscope checks, bus and SD throughput measurements | `CoolingDockNRF` (`doc/ppk2_profile.md`), `RoamoodDemo` (`docs/04-engineering-notes.md`) |
+| Web | React, Next.js, TypeScript, Node.js | trip planner (live), grade analysis site (live), `InternetConnectionControlDemo` console (screenshots) |
+| Mobile | Capacitor (iOS / Android), React Native / Expo | Capacitor: `InternetConnectionControlDemo`, `CoolingDockDemo`; React Native: `RoamoodDemo` app |
+| Languages | C, C++, TypeScript, Python | across the repos above |
 
 ---
 
 ## Projects — embedded firmware
 
-### [`RoamoodDemo`](https://github.com/sushenghua/RoamoodDemo) — embedded slice
+### [`RoamoodDemo`](https://github.com/sushenghua/RoamoodDemo) — hardware and firmware
 
-Roamood is a portable AI remix instrument: a phone app generates and arranges music stems with cloud AI, streams them to a handheld unit, and the unit performs them live. Two firmwares: a **Daisy Seed (STM32H750, Cortex-M7 @ 480 MHz)** bare-metal C++ audio master running 4 stems × (WSOLA time-stretch → tone → EQ → fader → echo → roll → gate → flanger → crush) + an 8-voice polyBLEP synth + a Dattorro / Schroeder master reverb, measured at ~0.4 ms of a 1 ms 48 kHz callback while streaming a backing track from SD; and an **ESP32-S3 (ESP-IDF 5.5 / FreeRTOS)** comms + UI node handling WiFi / BLE (NimBLE) coexistence, USB-host MIDI / HID, and an LVGL touch UI, linked to the Daisy over UART 1 Mbps (CRC16-framed) + SPI 8 MHz DMA. Contract-first protocol docs on every seam, shared header-only mirrors compiled into both firmwares, wireless OTA for both, and bench-measured bus throughput / SD signal-integrity / ISR-budget notes. Showcase repo — docs and media; the companion mobile app is described in the web / mobile section below.
+<p align="center">
+  <a href="https://github.com/sushenghua/RoamoodDemo"><img src="https://raw.githubusercontent.com/sushenghua/RoamoodDemo/main/media/hardware/hero.jpg" alt="Roamood handheld unit with the play screen showing four channel strips" width="640"></a>
+</p>
+
+Roamood is a handheld music instrument. A phone app generates stems with cloud AI and sends them to the device. The device mixes and performs them live with no phone attached. The repo holds the design docs, photos, and two videos.
+
+- Audio MCU: Daisy Seed (STM32H750, Cortex-M7 at 480 MHz), bare-metal C++. Four stems, each with time-stretch (WSOLA), tone, EQ, fader, echo, roll, gate, flanger, and crush. An 8-voice polyBLEP synth and a Dattorro or Schroeder master reverb.
+- Measured: about 0.4 ms worst case inside a 1 ms, 48 kHz audio callback while loading stems from SD during playback.
+- Front-end MCU: ESP32-S3 on ESP-IDF 5.5 and FreeRTOS. WiFi and BLE (NimBLE) together, USB host for MIDI and HID, LVGL touch UI. Linked to the Daisy over 1 Mbps UART with CRC16 frames and 8 MHz SPI with DMA.
+- Both firmwares update over the air. The protocols between the two MCUs and the app are documented, and the same header files are compiled into both firmwares.
+- The docs include bench notes on bus throughput, SD signal integrity, and ISR budget, plus a host-tested C++ DSP library.
+
+Watch it run: [live set](https://github.com/sushenghua/RoamoodDemo#readme) (pads, take switching, effects, synth over a streamed backing track) and [app walkthrough](https://github.com/sushenghua/RoamoodDemo#readme), both embedded at the top of the repo README.
+
+<!-- TODO video (Roamood, 30 to 60 s, landscape, clear audio):
+     - Start with the device already playing four stems.
+     - Turn one knob (or move the XY pad) so one stem's filter or echo audibly changes while the others keep playing.
+     - Switch a take on one pad, then hold a roll or gate for a bar.
+     - Keep the LCD in frame so the channel strips are visible.
+     - Export H.264 mp4 under 10 MB, upload by dragging it into a GitHub issue or README edit box, and paste the user-attachments URL here. -->
 
 ### [`CoolingDockNRF`](https://github.com/sushenghua/CoolingDockNRF)
 
-Zephyr / nRF Connect SDK firmware port of the ESP32-C3 CoolingDock product onto the Nordic nRF52832 DK. Wire-compatible with the original Capacitor frontend — same UUIDs, JSON shapes, MTU, so the existing app runs against this firmware unmodified. Includes a `twister`-driven test pyramid (unit + integration with kernel / NVS / `nrfx` fakes + Python HIL smoke) and a [PPK2 power-profile guide](https://github.com/sushenghua/CoolingDockNRF/blob/main/doc/ppk2_profile.md) that landed a 74 % baseline-current reduction (1.45 mA → 381 µA) after diagnosing the UART driver as the dominant idle-current source.
+<p align="center">
+  <a href="https://github.com/sushenghua/CoolingDockNRF"><img src="https://raw.githubusercontent.com/sushenghua/CoolingDockNRF/main/doc/assets/nrf_board_ppk2_oscope.jpg" alt="nRF52 DK with SHT3x sensor, PPK2, and oscilloscope showing the fan PWM" width="640"></a>
+</p>
+
+Zephyr / nRF Connect SDK firmware for the Nordic nRF52832 DK. It re-implements the local-control part of the ESP32-C3 [CoolingDock](https://github.com/sushenghua/CoolingDockDemo) product: SHT3x sampling over I2C, fan PWM with hysteresis and ramping, and a BLE GATT peripheral with secure pairing and bonded-only advertising. Same UUIDs, JSON shapes, and MTU as the original, so the existing Capacitor app connects to it. On iOS the app needs write-with-response turned on.
+
+- Tests: unit and integration tests built and run on the host with fakes for the kernel, settings / NVS, and `nrfx`; an optional `twister` target for the integration test; a Python (`bleak`) hardware-in-loop smoke test. See [`tests/README.md`](https://github.com/sushenghua/CoolingDockNRF/blob/main/tests/README.md).
+- Power: the [PPK2 profile guide](https://github.com/sushenghua/CoolingDockNRF/blob/main/doc/ppk2_profile.md) walks from 1.45 mA idle to 290 to 570 µA depending on BLE state (381 µA in the usual bonded state, about 74 % lower), after finding the UART driver was the main idle load.
+
+Watch it run: the [repo README](https://github.com/sushenghua/CoolingDockNRF#readme) embeds a short clip where a finger warms the sensor and the scope shows the PWM duty widen.
+
+<!-- TODO video (CoolingDock, 30 to 45 s):
+     - This port is BLE only, so use the Capacitor app on a phone: change the mode from Fixed to Sensor, drag the speed slider, and show the fan speed change on the real dock.
+     - For the "web UI driving the fans" clip, use the original ESP32-C3 unit instead: open the browser UI over WebSocket, move the PWM slider, and keep both the screen and the fan in frame.
+     - Paste the user-attachments URL here. -->
 
 ### [`CoolingDockDemo`](https://github.com/sushenghua/CoolingDockDemo)
 
-End-to-end portfolio aggregator for the original CoolingDock product — ESP-IDF / FreeRTOS firmware (ESP32-C3), React 19 + TypeScript Capacitor companion app, 3D-printed enclosure CAD and assembled-unit photos, PPK2 power captures. The full loop from PCB and firmware through to the iOS / Android UI.
+<p align="center">
+  <a href="https://github.com/sushenghua/CoolingDockDemo"><img src="https://raw.githubusercontent.com/sushenghua/CoolingDockDemo/main/doc/3d_print/CoolingDockSide.jpg" alt="3D-printed CoolingDock under a Mac mini" width="380"></a>
+  <a href="https://github.com/sushenghua/CoolingDockDemo"><img src="https://raw.githubusercontent.com/sushenghua/CoolingDockDemo/main/doc/app/CoolingDockApp.PNG" alt="CoolingDock iOS app showing temperature, humidity, and fan speed" width="180"></a>
+</p>
 
-### [`InternetConnectionControlDemo`](https://github.com/sushenghua/InternetConnectionControlDemo) — embedded slice
+The original product the nRF port above came from: a 3D-printed cooling dock for a Mac mini with ESP32-C3 firmware (ESP-IDF, FreeRTOS, NimBLE) and a React 19 + TypeScript Capacitor app for iOS and Android. The repo holds photos of the printed enclosure, CAD renders, the app screenshot, and PPK2 current captures for each BLE state. The README describes the firmware and app structure.
 
-ESP32-C6 firmware (the "Minion") that drives household routers via their vendor admin APIs and enforces per-child daily online-time budgets at the MAC-filter layer. Custom command-key protocol multiplexed over HTTP, WebSocket, MQTT, and BLE — same command surface across all four transports. The repo also contains the web and mobile companion apps (see the web / mobile section below).
+### [`InternetConnectionControlDemo`](https://github.com/sushenghua/InternetConnectionControlDemo) — firmware
+
+<p align="center">
+  <a href="https://github.com/sushenghua/InternetConnectionControlDemo"><img src="https://raw.githubusercontent.com/sushenghua/InternetConnectionControlDemo/main/docs/device/minion1.jpg" alt="ESP32-C6 dev board running the Minion firmware" width="360"></a>
+</p>
+
+An ESP32-C6 device (the "Minion") that logs into home routers through their admin APIs and enforces a daily online-time budget per child at the MAC-filter level. One command interpreter serves HTTP, WebSocket, and BLE, so the web console and the phone app send the same commands. The repo holds docs and screenshots. The web and mobile apps are described in the web / mobile section below.
 
 ### [`IoT_ESP32_Dehumidifier`](https://github.com/sushenghua/IoT_ESP32_Dehumidifier)
 
-ESP32 dehumidifier with dual-zone hysteresis control — two SHT3x sensors driving two PWM fans. Native ESP-IDF HTTP + WebSocket server (no external libraries), CRC-8 sensor-bus validation, and OTA firmware updates delivered directly from the browser UI with MD5 verification and dual-partition A/B failsafe.
+<p align="center">
+  <a href="https://github.com/sushenghua/IoT_ESP32_Dehumidifier"><img src="https://raw.githubusercontent.com/sushenghua/IoT_ESP32_Dehumidifier/master/doc/img/show2.jpg" alt="Dehumidifier controller box with an iPad showing its web UI" width="300"></a>
+  <a href="https://github.com/sushenghua/IoT_ESP32_Dehumidifier"><img src="https://raw.githubusercontent.com/sushenghua/IoT_ESP32_Dehumidifier/master/doc/img/webui.jpg" alt="Dehumidifier web UI with two zones and threshold settings" width="300"></a>
+</p>
 
-### Other embedded work — source available on request
+Earlier ESP-IDF C++ project (2023). Two SHT3x sensors, each switching its own fan through a MOSFET board with hysteresis thresholds. The device serves its own web page from ESP-IDF's `esp_http_server` and talks to it over WebSocket. Sensor reads are checked with CRC-8. A button in the UI triggers an OTA update that the device fetches from a small updater service, verifies by MD5, and writes to the inactive OTA partition. An MQTT client is included. No tests. The UI text is in Chinese.
 
-- **IoT Environmental Sensor Platform** (commercially released as *Q Monitor* on iOS / Android, 2017–2019) — 10+ FreeRTOS tasks, fleet OTA over MQTT with dual-partition A/B failsafe and MD5-verified images, six sensor drivers across I2C / UART / ADC, five LCD / OLED display drivers, BQ24295 battery-management IC, EAP enterprise WiFi.
-- **Auto-Watering System** (2025) — closed-loop irrigation across two repos: an ESP32 controller reading temperature / humidity sensors and driving a relay-driven water valve, paired with a Python service (deployed as a systemd daemon) that talks to the ESP32 over WebSocket, fetches weather forecasts, and runs the watering logic. SQLite for historical analysis and plotting.
-- **Mining Rig Monitoring & Control** (fixed-scope contract, 2021–2022) — Raspberry Pi multi-service systemd architecture, TCA9548A I2C mux, pigpio PWM, Redis IPC, IFTTT alerting with rate limiting.
-- **DodoBot** (2016–2017) — distributed multi-MCU robotics platform; custom SPI command protocol deployed across four MCUs spanning three architectures (Cortex-M3, Cortex-M0+, AVR); Python C extensions for low-latency BCM2835 register access; OpenOCD / JTAG debugging via Raspberry Pi.
+<!-- TODO video (dehumidifier, 20 to 40 s):
+     - Phone or tablet showing the web UI next to the fans.
+     - Tap the "always on" mode, show the fan icon turn cyan and the real fan spin up, then set it back to auto.
+     - Paste the user-attachments URL here. -->
+
+### Other embedded work
+
+- **Q Monitor** (2017 to 2019) — ESP32 environmental sensor product released on iOS and Android. FreeRTOS firmware with fleet OTA over MQTT, several I2C / UART / ADC sensor drivers, LCD and OLED drivers, a battery-management IC, and enterprise WiFi.
+- **Mining rig monitoring and control** (2021 to 2022) — Raspberry Pi with several systemd services, a TCA9548A I2C mux, PWM fan control, Redis between services, and rate-limited alerts.
+- **Auto-watering system** (2025) — ESP32 controller with a relay-driven valve and a Python service on a small server that reads the forecast and decides when to water.
+- **DodoBot** (2016 to 2017) — multi-MCU robot with a custom SPI command protocol across Cortex-M3, Cortex-M0+, and AVR parts, driven from a Raspberry Pi.
 
 ---
 
 ## Projects — web / mobile
 
-### [`RoamoodDemo`](https://github.com/sushenghua/RoamoodDemo) — mobile slice
+### [`RoamoodDemo`](https://github.com/sushenghua/RoamoodDemo) — mobile app
 
-React Native + TypeScript (Expo custom dev client, EAS) companion app for the Roamood hardware above. Cloud-AI stem generation (Stable Audio 2, provider-pluggable), a mixer / arranger with timeline, FX, and time-stretch, and Skia-rendered waveform tiles. The audio engine is Superpowered C++ in a local Expo native module driven over JSI so per-frame control values bypass the JS bridge and no PCM ever crosses it — implementing the same per-stem effect chain, macro curves, and beat clock as the device firmware so what you hear in the app is what the hardware plays. Device link over BLE (`react-native-ble-plx`) for control and HTTP over WiFi (STA or the device's own SoftAP, mDNS discovery) for bulk stems. Jest for pure DSP / format logic plus C++ host tests linking the real audio SDK on macOS. The repo includes an app walkthrough video and a live-set recording.
+<p align="center">
+  <a href="https://github.com/sushenghua/RoamoodDemo"><img src="https://raw.githubusercontent.com/sushenghua/RoamoodDemo/main/media/app/mixer.png" alt="Roamood app mixer with four lanes and waveform tiles" width="200"></a>
+  <a href="https://github.com/sushenghua/RoamoodDemo"><img src="https://raw.githubusercontent.com/sushenghua/RoamoodDemo/main/media/app/fx-drawer.png" alt="Roamood app with a lane's effects drawer open" width="200"></a>
+</p>
 
-### [`InternetConnectionControlDemo`](https://github.com/sushenghua/InternetConnectionControlDemo) — web / mobile slice
+React Native + TypeScript app for the Roamood device, built with an Expo custom dev client and EAS. It generates stems with cloud AI, currently Stable Audio 2 behind a provider interface, arranges them on a timeline with effects and time-stretch, and pushes them to the device. The audio engine is Superpowered C++ in a local Expo module driven over JSI, so control values skip the JS bridge and no audio samples cross it. It runs the same effect chain and beat clock as the firmware. BLE for control, HTTP over WiFi or the device's own access point for stem transfer. Jest for DSP and format logic, C++ host tests on macOS. The repo README embeds a walkthrough video.
 
-A Next.js 16 self-hosted parental-control console + a Capacitor iOS / Android companion app, paired with the ESP32-C6 firmware above. Vendor-agnostic `RouterClient` abstraction over UniFi and Asus routers, session-based auth with encrypted secret storage, and a device-fingerprinting layer to maintain stable identity across MAC randomisation and DHCP rotation. The repo includes screenshots of both the web and mobile UIs.
+### [`InternetConnectionControlDemo`](https://github.com/sushenghua/InternetConnectionControlDemo) — web console and mobile app
+
+<p align="center">
+  <a href="https://github.com/sushenghua/InternetConnectionControlDemo"><img src="https://raw.githubusercontent.com/sushenghua/InternetConnectionControlDemo/main/docs/screen-shot/webapp-screen1.png" alt="Parent control web console with weekday and weekend rules" width="260"></a>
+  <a href="https://github.com/sushenghua/InternetConnectionControlDemo"><img src="https://raw.githubusercontent.com/sushenghua/InternetConnectionControlDemo/main/docs/screen-shot/mobileapp-screen2.png" alt="Mobile app listing router clients with block and unblock buttons" width="150"></a>
+</p>
+
+A self-hosted Next.js parental-control console and a Capacitor companion app (iOS so far), paired with the ESP32-C6 firmware above. The console has a router client interface with UniFi and Asus implementations, cookie-session auth with router credentials stored encrypted, and a device matcher that scores hostname, OUI, and vendor so a device keeps its identity when its MAC address changes. The repo holds screenshots of both apps.
 
 ### [`application_ui`](https://github.com/sushenghua/application_ui)
 
-UI screenshots portfolio — curated screens from shipped products and recent frontend work.
+<p align="center">
+  <a href="https://github.com/sushenghua/application_ui"><img src="https://raw.githubusercontent.com/sushenghua/application_ui/main/images/sga_ui2.png" alt="Student grade analysis table with filters and GPA badges" width="420"></a>
+  <a href="https://github.com/sushenghua/application_ui"><img src="https://raw.githubusercontent.com/sushenghua/application_ui/main/images/Roamood_ui1.png" alt="Roamood mobile app track editor" width="130"></a>
+</p>
+
+Screenshots from apps I have built: Roamood, the parental-control console, the CoolingDock app, the trip planner, the grade analysis site, a DEX trading front end, and some older native work (an iOS game in Cocos2d, shown as a video, and an Android battery app).
 
 ### [`CryptoPortfolioDemo`](https://github.com/sushenghua/CryptoPortfolioDemo/blob/main/binance_crypto.ipynb)
 
-Python (NumPy, Pandas, SciPy, Seaborn) analytical tooling for portfolio performance assessment, with clear interpretable visualisations of return, drawdown, and risk metrics.
+Python notebook (NumPy, Pandas, SciPy, Seaborn) that pulls Binance price history and computes returns, volatility, Sharpe ratio, VaR, and efficient-frontier portfolios, with charts rendered in the notebook. Drawdown analysis is implemented but not in the rendered output. Needs a Binance API key to re-run.
 
-### Other web / mobile work — source available on request
+<!-- TODO image: screenshot of one rendered chart from the notebook on GitHub (the efficient frontier or the correlation map), about 800 px wide, saved as images/crypto-notebook.png in this repo. -->
 
-- **Trip Planner Map** (live demo: [trip-planner-map.vercel.app](https://trip-planner-map.vercel.app)) — Next.js, Mapbox GL JS, MongoDB, React Query, Zustand; 90+ Lighthouse accessibility *and* performance scores; AI-assisted trip suggestions with predictable fallback states; Playwright E2E across desktop, tablet, and mobile viewports.
-- **Student Grade Analysis (SGA)** (live demo: [usgaweb.vercel.app/students](https://usgaweb.vercel.app/students)) — Auckland ICT Graduate School academic management system; Next.js + FastAPI + Pandas + MySQL, deployed on AWS EC2 with Docker.
-- **CryptoBot** (remote contract, 2025) — market-analysis assistant; Next.js + Zustand frontend on a Python FastAPI + CrewAI backend; owned application architecture and end-to-end UX, iterating on output clarity and workflow predictability based on user feedback.
-- **Cryptocurrency DEX** at Hoo Smart Chain (2022–2023) — high-clarity trading interface; React.js, Ether.js, Tailwind, Node.js; responsive data-dense UI for order placement, order books, and portfolio views; optimised render performance and bundle size for sub-second interactions under load.
+### Other web / mobile work
+
+- **Trip Planner Map** — live at [trip-planner-map.vercel.app](https://trip-planner-map.vercel.app). Next.js, Mapbox GL JS, MongoDB, React Query, Zustand. Add stops, see the route, and on a phone the trip list becomes a bottom sheet. AI trip suggestions are available after sign-in.
+  <a href="https://github.com/sushenghua/application_ui"><img src="https://raw.githubusercontent.com/sushenghua/application_ui/main/images/tpm_ui2.jpg" alt="Trip planner map on a phone" width="150"></a>
+  <!-- TODO image: desktop screenshot of the trip planner with the trip pane expanded and a full route visible, about 1200 px wide, saved as images/trip-planner.png in this repo. -->
+- **Student Grade Analysis (SGA)** — live at [usgaweb.vercel.app/students](https://usgaweb.vercel.app/students). Grade and programme management for a graduate ICT school. Sign in with user `admin`, password `admin` to browse about 250 sample students, filtered by programme, term, course, or tag. Next.js front end, FastAPI + Pandas + MySQL back end, deployed with Docker on AWS EC2. Screenshots are in [`application_ui`](https://github.com/sushenghua/application_ui#sga-screen).
+  <!-- TODO image: desktop screenshot of the students table signed in as the demo account (sample data, no real names), about 1200 px wide, saved as images/sga-students.png in this repo. -->
+- **CryptoBot** (remote contract, 2025) — market-analysis assistant. Next.js + Zustand front end on a FastAPI + CrewAI back end.
+- **Cryptocurrency DEX** at Hoo Smart Chain (2022 to 2023) — trading interface in React, Ethers.js, Tailwind, and Node.js, with order placement, order books, and portfolio views. One screen is in [`application_ui`](https://github.com/sushenghua/application_ui#dex-frontend-complex-web-ui).
 
 ---
 
