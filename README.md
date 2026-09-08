@@ -18,7 +18,7 @@ I work on two tracks: embedded firmware (ESP32, STM32, nRF52) and web / mobile a
 - [usgaweb.vercel.app/students](https://usgaweb.vercel.app/students) — live student grade analysis site with sample data. Sign in with user `admin`, password `admin`.
 - [`application_ui`](https://github.com/sushenghua/application_ui) — screenshots from shipped and recent apps, including some older native iOS and Android work.
 
-The pinned repos on [github.com/sushenghua](https://github.com/sushenghua) should match this list: `RoamoodDemo`, `CoolingDockNRF`, `InternetConnectionControlDemo`, `application_ui`, plus this index. A draft profile README that routes visitors here is in [`PROFILE_README.md`](PROFILE_README.md).
+The pinned repos on [github.com/sushenghua](https://github.com/sushenghua) should match this list: `RoamoodDemo`, `CoolingDockNRF`, `InternetConnectionControlDemo`, `application_ui`, plus this index.
 
 ---
 
@@ -44,7 +44,8 @@ Every item here appears in a linked repo or live site. The last column says wher
 ### [`RoamoodDemo`](https://github.com/sushenghua/RoamoodDemo) — hardware and firmware
 
 <p align="center">
-  <a href="https://github.com/sushenghua/RoamoodDemo"><img src="https://raw.githubusercontent.com/sushenghua/RoamoodDemo/main/media/hardware/hero.jpg" alt="Roamood handheld unit with the play screen showing four channel strips" width="640"></a>
+  <a href="https://github.com/sushenghua/RoamoodDemo"><img src="https://raw.githubusercontent.com/sushenghua/RoamoodDemo/main/media/hardware/hero.jpg" alt="Roamood handheld unit with the play screen showing four channel strips" height="320"></a>
+  <a href="https://github.com/sushenghua/RoamoodDemo"><img src="https://raw.githubusercontent.com/sushenghua/RoamoodDemo/main/media/hardware/bench.jpg" alt="Roamood bench build with the ESP32-S3, Daisy Seed, LCD, and pad controller" height="320"></a>
 </p>
 
 Roamood is a handheld music instrument. A phone app generates stems with cloud AI and sends them to the device. The device mixes and performs them live with no phone attached. The repo holds the design docs, photos, and two videos.
@@ -108,10 +109,6 @@ An ESP32-C6 device (the "Minion") that logs into home routers through their admi
 
 Earlier ESP-IDF C++ project (2023). Two SHT3x sensors, each switching its own fan through a MOSFET board with hysteresis thresholds. The device serves its own web page from ESP-IDF's `esp_http_server` and talks to it over WebSocket. Sensor reads are checked with CRC-8. A button in the UI triggers an OTA update that the device fetches from a small updater service, verifies by MD5, and writes to the inactive OTA partition. An MQTT client is included. No tests. The UI text is in Chinese.
 
-<!-- TODO video (dehumidifier, 20 to 40 s):
-     - Phone or tablet showing the web UI next to the fans.
-     - Tap the "always on" mode, show the fan icon turn cyan and the real fan spin up, then set it back to auto.
-     - Paste the user-attachments URL here. -->
 
 ### Other embedded work
 
@@ -124,11 +121,32 @@ Earlier ESP-IDF C++ project (2023). Two SHT3x sensors, each switching its own fa
 
 ## Projects — web / mobile
 
+### Trip Planner Map — [trip-planner-map.vercel.app](https://trip-planner-map.vercel.app)
+
+<p align="center">
+  <a href="https://trip-planner-map.vercel.app"><img src="https://raw.githubusercontent.com/sushenghua/application_ui/main/images/tpm_ui2.jpg" alt="Trip planner map on a phone" width="200"></a>
+</p>
+
+Next.js, Mapbox GL JS, MongoDB, React Query, Zustand. Add stops, see the route, and on a phone the trip list becomes a bottom sheet. AI trip suggestions are available after sign-in.
+
+<!-- TODO image: desktop screenshot of the trip planner with the trip pane expanded and a full route visible, about 1200 px wide, saved as images/trip-planner.png in this repo. -->
+
+### Student Grade Analysis (SGA) — [usgaweb.vercel.app/students](https://usgaweb.vercel.app/students)
+
+<p align="center">
+  <a href="https://usgaweb.vercel.app/students"><img src="https://raw.githubusercontent.com/sushenghua/application_ui/main/images/sga_ui2.png" alt="Student grade analysis table with filters and GPA badges" width="640"></a>
+</p>
+
+Grade and programme management for a graduate ICT school. Sign in with user `admin`, password `admin` to browse about 250 sample students, filtered by programme, term, course, or tag. Next.js front end, FastAPI + Pandas + MySQL back end, deployed with Docker on AWS EC2.
+
+<!-- TODO image: desktop screenshot of the students table signed in as the demo account (sample data, no real names), about 1200 px wide, saved as images/sga-students.png in this repo. -->
+
 ### [`RoamoodDemo`](https://github.com/sushenghua/RoamoodDemo) — mobile app
 
 <p align="center">
   <a href="https://github.com/sushenghua/RoamoodDemo"><img src="https://raw.githubusercontent.com/sushenghua/RoamoodDemo/main/media/app/mixer.png" alt="Roamood app mixer with four lanes and waveform tiles" width="200"></a>
   <a href="https://github.com/sushenghua/RoamoodDemo"><img src="https://raw.githubusercontent.com/sushenghua/RoamoodDemo/main/media/app/fx-drawer.png" alt="Roamood app with a lane's effects drawer open" width="200"></a>
+  <a href="https://github.com/sushenghua/RoamoodDemo"><img src="https://raw.githubusercontent.com/sushenghua/RoamoodDemo/main/media/app/bind1.png" alt="Roamood app pad controller bindings with a 4 by 4 pad grid" width="200"></a>
 </p>
 
 React Native + TypeScript app for the Roamood device, built with an Expo custom dev client and EAS. It generates stems with cloud AI, currently Stable Audio 2 behind a provider interface, arranges them on a timeline with effects and time-stretch, and pushes them to the device. The audio engine is Superpowered C++ in a local Expo module driven over JSI, so control values skip the JS bridge and no audio samples cross it. It runs the same effect chain and beat clock as the firmware. BLE for control, HTTP over WiFi or the device's own access point for stem transfer. Jest for DSP and format logic, C++ host tests on macOS. The repo README embeds a walkthrough video.
@@ -145,25 +163,15 @@ A self-hosted Next.js parental-control console and a Capacitor companion app (iO
 ### [`application_ui`](https://github.com/sushenghua/application_ui)
 
 <p align="center">
-  <a href="https://github.com/sushenghua/application_ui"><img src="https://raw.githubusercontent.com/sushenghua/application_ui/main/images/sga_ui2.png" alt="Student grade analysis table with filters and GPA badges" width="420"></a>
-  <a href="https://github.com/sushenghua/application_ui"><img src="https://raw.githubusercontent.com/sushenghua/application_ui/main/images/Roamood_ui1.png" alt="Roamood mobile app track editor" width="130"></a>
+  <a href="https://github.com/sushenghua/application_ui#dex-frontend-complex-web-ui"><img src="https://raw.githubusercontent.com/sushenghua/application_ui/main/images/web_ui_complex.jpg" alt="DEX trading front end" width="420"></a>
+  <a href="https://github.com/sushenghua/application_ui#roamood"><img src="https://raw.githubusercontent.com/sushenghua/application_ui/main/images/Roamood_ui1.png" alt="Roamood mobile app track editor" width="130"></a>
 </p>
 
 Screenshots from apps I have built: Roamood, the parental-control console, the CoolingDock app, the trip planner, the grade analysis site, a DEX trading front end, and some older native work (an iOS game in Cocos2d, shown as a video, and an Android battery app).
 
-### [`CryptoPortfolioDemo`](https://github.com/sushenghua/CryptoPortfolioDemo/blob/main/binance_crypto.ipynb)
-
-Python notebook (NumPy, Pandas, SciPy, Seaborn) that pulls Binance price history and computes returns, volatility, Sharpe ratio, VaR, and efficient-frontier portfolios, with charts rendered in the notebook. Drawdown analysis is implemented but not in the rendered output. Needs a Binance API key to re-run.
-
-<!-- TODO image: screenshot of one rendered chart from the notebook on GitHub (the efficient frontier or the correlation map), about 800 px wide, saved as images/crypto-notebook.png in this repo. -->
-
 ### Other web / mobile work
 
-- **Trip Planner Map** — live at [trip-planner-map.vercel.app](https://trip-planner-map.vercel.app). Next.js, Mapbox GL JS, MongoDB, React Query, Zustand. Add stops, see the route, and on a phone the trip list becomes a bottom sheet. AI trip suggestions are available after sign-in.
-  <a href="https://github.com/sushenghua/application_ui"><img src="https://raw.githubusercontent.com/sushenghua/application_ui/main/images/tpm_ui2.jpg" alt="Trip planner map on a phone" width="150"></a>
-  <!-- TODO image: desktop screenshot of the trip planner with the trip pane expanded and a full route visible, about 1200 px wide, saved as images/trip-planner.png in this repo. -->
-- **Student Grade Analysis (SGA)** — live at [usgaweb.vercel.app/students](https://usgaweb.vercel.app/students). Grade and programme management for a graduate ICT school. Sign in with user `admin`, password `admin` to browse about 250 sample students, filtered by programme, term, course, or tag. Next.js front end, FastAPI + Pandas + MySQL back end, deployed with Docker on AWS EC2. Screenshots are in [`application_ui`](https://github.com/sushenghua/application_ui#sga-screen).
-  <!-- TODO image: desktop screenshot of the students table signed in as the demo account (sample data, no real names), about 1200 px wide, saved as images/sga-students.png in this repo. -->
+- [`CryptoPortfolioDemo`](https://github.com/sushenghua/CryptoPortfolioDemo/blob/main/binance_crypto.ipynb) — Python notebook (NumPy, Pandas, SciPy, Seaborn) that pulls Binance price history and computes returns, volatility, Sharpe ratio, VaR, and efficient-frontier portfolios, with charts rendered in the notebook. Needs a Binance API key to re-run.
 - **CryptoBot** (remote contract, 2025) — market-analysis assistant. Next.js + Zustand front end on a FastAPI + CrewAI back end.
 - **Cryptocurrency DEX** at Hoo Smart Chain (2022 to 2023) — trading interface in React, Ethers.js, Tailwind, and Node.js, with order placement, order books, and portfolio views. One screen is in [`application_ui`](https://github.com/sushenghua/application_ui#dex-frontend-complex-web-ui).
 
@@ -174,7 +182,3 @@ Python notebook (NumPy, Pandas, SciPy, Seaborn) that pulls Binance price history
 - **Email** [shenghua.su@gmail.com](mailto:shenghua.su@gmail.com)
 - **GitHub** [@sushenghua](https://github.com/sushenghua)
 - **Location** Auckland, New Zealand · full NZ work rights
-
-## License
-
-[MIT](LICENSE).
