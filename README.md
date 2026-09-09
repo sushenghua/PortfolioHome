@@ -115,8 +115,8 @@ An ESP32-C6 device (the "Minion") that logs into home routers through their admi
 ### [`IoT_ESP32_Dehumidifier`](https://github.com/sushenghua/IoT_ESP32_Dehumidifier)
 
 <p align="center">
-  <a href="https://github.com/sushenghua/IoT_ESP32_Dehumidifier"><img src="https://raw.githubusercontent.com/sushenghua/IoT_ESP32_Dehumidifier/master/doc/img/show2.jpg" alt="Dehumidifier controller box with an iPad showing its web UI" width="300"></a>
-  <a href="https://github.com/sushenghua/IoT_ESP32_Dehumidifier"><img src="https://raw.githubusercontent.com/sushenghua/IoT_ESP32_Dehumidifier/master/doc/img/webui.jpg" alt="Dehumidifier web UI with two zones and threshold settings" width="300"></a>
+  <a href="https://github.com/sushenghua/IoT_ESP32_Dehumidifier"><img src="https://raw.githubusercontent.com/sushenghua/IoT_ESP32_Dehumidifier/master/doc/img/show1.jpg" alt="Two fans mounted under a cabinet with the controller box on the wall" height="400"></a>
+  <a href="https://github.com/sushenghua/IoT_ESP32_Dehumidifier"><img src="https://raw.githubusercontent.com/sushenghua/IoT_ESP32_Dehumidifier/master/doc/img/webui.jpg" alt="Dehumidifier web UI with two zones and threshold settings" height="400"></a>
 </p>
 
 Earlier ESP-IDF C++ project (2023). Two SHT3x sensors, each switching its own fan through a MOSFET board with hysteresis thresholds. The device serves its own web page from ESP-IDF's `esp_http_server` and talks to it over WebSocket. Sensor reads are checked with CRC-8. A button in the UI triggers an OTA update that the device fetches from a small updater service, verifies by MD5, and writes to the inactive OTA partition. An MQTT client is included. No tests. The UI text is in Chinese.
