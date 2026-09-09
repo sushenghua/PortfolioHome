@@ -9,7 +9,7 @@ I work on two tracks: embedded firmware (ESP32, STM32, nRF52) and web / mobile a
 **Embedded firmware**
 
 - [`RoamoodDemo`](https://github.com/sushenghua/RoamoodDemo) — handheld audio device with real-time DSP on an STM32H750 and an ESP32-S3 front end. Docs, bench measurements, and two videos.
-- [`CoolingDockNRF`](https://github.com/sushenghua/CoolingDockNRF) — Zephyr / nRF52832 port of a product firmware, with host-run unit and integration tests, a Python HIL smoke test, and a PPK2 power write-up.
+- [`CoolingDockNRF`](https://github.com/sushenghua/CoolingDockNRF) — Zephyr / nRF52832 port of a product firmware, with host-run unit and integration tests, a Python HIL smoke test, and a PPK2 power write-up. The product it came from is [`CoolingDockDemo`](https://github.com/sushenghua/CoolingDockDemo): ESP32-C3 firmware, a Capacitor app, enclosure photos, and power captures.
 - [`InternetConnectionControlDemo`](https://github.com/sushenghua/InternetConnectionControlDemo) — ESP32-C6 device that controls home routers, plus a web console and a mobile app. Docs and screenshots.
 
 **Web / mobile (TypeScript)**
@@ -18,6 +18,7 @@ I work on two tracks: embedded firmware (ESP32, STM32, nRF52) and web / mobile a
 - [usgaweb.vercel.app/students](https://usgaweb.vercel.app/students) — live student grade analysis site with sample data. Sign in with user `admin`, password `admin`.
 - [`application_ui`](https://github.com/sushenghua/application_ui) — screenshots from shipped and recent apps, including some older native iOS and Android work.
 
+The pinned repos on [github.com/sushenghua](https://github.com/sushenghua) should match this list: `RoamoodDemo`, `CoolingDockNRF`, `CoolingDockDemo`, `InternetConnectionControlDemo`, `application_ui`, plus this index.
 
 ---
 
