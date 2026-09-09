@@ -176,7 +176,7 @@ Grade and programme management for a graduate ICT school. Sign in with user `adm
 
 <p align="center">
   <a href="https://github.com/sushenghua/application_ui#dex-frontend-complex-web-ui"><img src="https://raw.githubusercontent.com/sushenghua/application_ui/main/images/web_ui_complex.jpg" alt="DEX trading front end" height="320"></a>
-  <a href="https://github.com/sushenghua/application_ui#roamood"><img src="https://raw.githubusercontent.com/sushenghua/application_ui/main/images/Roamood_ui1.png" alt="Roamood mobile app track editor" height="320"></a>
+  <a href="https://github.com/sushenghua/application_ui#q-monitor-react-native-app"><img src="https://raw.githubusercontent.com/sushenghua/application_ui/main/images/mobile_ui1.PNG" alt="Q Monitor app showing sensor readings" height="320"></a>
 </p>
 
 Screenshots from apps I have built: Roamood, the parental-control console, the CoolingDock app, the trip planner, the grade analysis site, a DEX trading front end, and some older native work (an iOS game in Cocos2d, shown as a video, and an Android battery app).
