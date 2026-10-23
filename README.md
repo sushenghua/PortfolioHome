@@ -8,17 +8,19 @@ I work on two tracks: embedded firmware (ESP32, STM32, nRF52) and web / mobile a
 
 **Embedded firmware**
 
+- [`GardenAI`](https://github.com/sushenghua/GardenAI) — garden watering system: ESP32-C6 and solar nRF52840 nodes, an ESP32-S3 BLE gateway, a Python server that decides when to water, signed OTA with canary rollout, and an LLM assistant that proposes changes for approval. Docs, photos, and screenshots.
 - [`RoamoodDemo`](https://github.com/sushenghua/RoamoodDemo) — handheld audio device with real-time DSP on an STM32H750 and an ESP32-S3 front end. Docs, bench measurements, and two videos.
 - [`CoolingDockNRF`](https://github.com/sushenghua/CoolingDockNRF) — Zephyr / nRF52832 port of a product firmware, with host-run unit and integration tests, a Python HIL smoke test, and a PPK2 power write-up. The product it came from is [`CoolingDockDemo`](https://github.com/sushenghua/CoolingDockDemo): ESP32-C3 firmware, a Capacitor app, enclosure photos, and power captures.
 - [`InternetConnectionControlDemo`](https://github.com/sushenghua/InternetConnectionControlDemo) — ESP32-C6 device that controls home routers, plus a web console and a mobile app. Docs and screenshots.
 
 **Web / mobile (TypeScript)**
 
+- [`GardenAI`](https://github.com/sushenghua/GardenAI) — React + Capacitor app for the garden system above: charts, watering strategies, Bluetooth node setup, firmware releases, and a chat assistant with tools over the garden data, an LLM wiki for long-term memory, and RAG over gardening guides (Claude API, MCP).
 - [trip-planner-map.vercel.app](https://trip-planner-map.vercel.app) — live Next.js and Mapbox trip planner. Works on phone-sized screens.
 - [usgaweb.vercel.app/students](https://usgaweb.vercel.app/students) — live student grade analysis site with sample data. Sign in with user `admin`, password `admin`.
 - [`application_ui`](https://github.com/sushenghua/application_ui) — screenshots from shipped and recent apps, including some older native iOS and Android work.
 
-The pinned repos on [github.com/sushenghua](https://github.com/sushenghua) should match this list: `RoamoodDemo`, `CoolingDockNRF`, `CoolingDockDemo`, `InternetConnectionControlDemo`, `application_ui`, plus this index.
+The pinned repos on [github.com/sushenghua](https://github.com/sushenghua) should match this list: `GardenAI`, `RoamoodDemo`, `CoolingDockNRF`, `CoolingDockDemo`, `InternetConnectionControlDemo`, `application_ui`, plus this index.
 
 ---
 
@@ -28,11 +30,12 @@ The pinned repos on [github.com/sushenghua](https://github.com/sushenghua) shoul
 
 | Area | What |
 |---|---|
-| MCUs and boards | ESP32 (C3, C6, S3), STM32H750 (Daisy Seed), nRF52832, Raspberry Pi |
-| RTOS and SDKs | FreeRTOS, ESP-IDF, Zephyr / nRF Connect SDK (devicetree, Kconfig, west), bare-metal Cortex-M7 audio |
-| Buses and radios | UART, SPI, I2C, USB host (MIDI and HID), BLE (NimBLE and Zephyr host), WiFi, MQTT |
+| MCUs and boards | ESP32 (C3, C6, S3), STM32H750 (Daisy Seed), nRF52832, nRF52840, Raspberry Pi |
+| RTOS and SDKs | FreeRTOS, ESP-IDF, Zephyr / nRF Connect SDK (devicetree, Kconfig, west, MCUboot), bare-metal Cortex-M7 audio |
+| Buses and radios | UART, SPI, I2C, RS485 Modbus, USB host (MIDI and HID), BLE (NimBLE and Zephyr host, Coded PHY, mcumgr SMP), WiFi, MQTT |
 | Testing | Host-based unit and integration tests with subsystem fakes, hardware-in-loop smoke tests |
-| Power and bench work | Nordic PPK2 current profiling, oscilloscope checks, bus and SD throughput measurements |
+| Firmware updates | Signed OTA (ESP-IDF secure-signed apps, MCUboot), A/B slots with rollback, canary then stable rollout |
+| Power and bench work | Nordic PPK2 current profiling, oscilloscope checks, bus and SD throughput measurements, deep-sleep and switched-rail design |
 | Languages | C, C++, Python |
 
 ### Web / mobile
@@ -44,6 +47,7 @@ The pinned repos on [github.com/sushenghua](https://github.com/sushenghua) shoul
 | UI engineering | Design systems, component libraries, accessible and responsive UI, form validation (Zod) |
 | State and data | React Query, Zustand, D3.js, Mapbox GL JS, React Flow |
 | Testing and QA | Vitest unit tests with CI coverage gates, fast-check property-based tests, MSW request mocking, Playwright E2E, Lighthouse performance audits |
+| AI features | Claude API tool use with prompt caching, OpenAI-compatible adapters, MCP servers (Streamable HTTP), vision analysis of photos, SQLite FTS5 retrieval |
 | AI-assisted development | Claude Code and other AI coding assistants for project planning, iterative development, automated testing, issue tracking, and CI/CD integration |
 | Backend and APIs | Node.js, Python (FastAPI), RESTful APIs, GraphQL, JWT and session authentication, API contract design |
 | Data | MySQL, MongoDB, Redis, SQLite; schema design, indexing, aggregation |
@@ -52,6 +56,24 @@ The pinned repos on [github.com/sushenghua](https://github.com/sushenghua) shoul
 ---
 
 ## Projects — embedded firmware
+
+### [`GardenAI`](https://github.com/sushenghua/GardenAI) — nodes, gateway, and server
+
+<p align="center">
+  <a href="https://github.com/sushenghua/GardenAI"><img src="https://raw.githubusercontent.com/sushenghua/GardenAI/main/docs/deployment/balcony.jpg" alt="Solar nRF52840 sensor node on a balcony railing next to potted blueberries" height="320"></a>
+  <a href="https://github.com/sushenghua/GardenAI"><img src="https://raw.githubusercontent.com/sushenghua/GardenAI/main/docs/hardware/nrf-node.jpg" alt="nRF52840 node with solar lid, Li-ion cell, MAX3485, SHT31, and RS485 soil probe" height="320"></a>
+</p>
+<p align="center">
+  <a href="https://github.com/sushenghua/GardenAI"><img src="https://raw.githubusercontent.com/sushenghua/GardenAI/main/docs/hardware/lppc-node.jpg" alt="Hand-wired ESP32-C6 watering node with a 12 V battery pack, pump, and BTS7960 driver" width="430"></a>
+</p>
+
+GardenCare waters and monitors balcony pots. Battery nodes wake on a timer, report soil and air readings over MQTT, and act on the server's answer before going back to sleep. The repo holds the overview, hardware and deployment photos, and app screenshots.
+
+- Watering node: ESP32-C6 on ESP-IDF 5.5. 12 V pump on a BTS7960 at 20 kHz PWM, RS485 Modbus soil probe, SHT31, switched peripheral rail and a high-side battery divider so sleep current stays low. A 100 ms pump guard (water switch, battery sag) and a cycle watchdog.
+- Sensor node: nRF52840 on Zephyr / nRF Connect SDK with MCUboot, solar-charged Li-ion cell, BLE only. An ESP32-S3 gateway (NimBLE central, 1M and Coded PHY) bonds each node and relays it to MQTT on the node's own topics.
+- Server (Python, asyncio): embedded MQTT broker, strategies checked against soil, rain forecast, recent rain, and a water balance from Open-Meteo ET0 corrected by the node's own temperature. Nodes keep a copy of their strategies and water offline when the server is down.
+- Signed OTA for every node type: ESP-IDF images and MCUboot images (sent to nRF nodes over BLE SMP by the gateway, resumable). Canary first, stable after approval, rollback on the node, logs and core dumps uploaded. 124 pytest tests on the service.
+- KiCad boards for both nodes generated by Python scripts with a small grid router. Not yet fabricated.
 
 ### [`RoamoodDemo`](https://github.com/sushenghua/RoamoodDemo) — hardware and firmware
 
@@ -126,12 +148,24 @@ Earlier ESP-IDF C++ project (2023). Two SHT3x sensors, each switching its own fa
 
 - **Q Monitor** (2017 to 2019) — ESP32 environmental sensor product released on iOS and Android. FreeRTOS firmware with fleet OTA over MQTT, several I2C / UART / ADC sensor drivers, LCD and OLED drivers, a battery-management IC, and enterprise WiFi.
 - **Mining rig monitoring and control** (2021 to 2022) — Raspberry Pi with several systemd services, a TCA9548A I2C mux, PWM fan control, Redis between services, and rate-limited alerts.
-- **Auto-watering system** (2025) — ESP32 controller with a relay-driven valve and a Python service on a small server that reads the forecast and decides when to water.
+- **Auto-watering system** (2025) — ESP32 controller with a relay-driven valve and a Python service on a small server that reads the forecast and decides when to water. The predecessor of [`GardenAI`](https://github.com/sushenghua/GardenAI).
 - **DodoBot** (2016 to 2017) — multi-MCU robot with a custom SPI command protocol across Cortex-M3, Cortex-M0+, and AVR parts, driven from a Raspberry Pi.
 
 ---
 
 ## Projects — web / mobile
+
+### [`GardenAI`](https://github.com/sushenghua/GardenAI) — app and assistant
+
+<p align="center">
+  <a href="https://github.com/sushenghua/GardenAI"><img src="https://raw.githubusercontent.com/sushenghua/GardenAI/main/docs/screen-shot/home.png" alt="GardenCare Home with node readings and 24-hour charts" width="200"></a>
+  <a href="https://github.com/sushenghua/GardenAI"><img src="https://raw.githubusercontent.com/sushenghua/GardenAI/main/docs/screen-shot/strategies.png" alt="GardenCare watering strategy editor" width="200"></a>
+  <a href="https://github.com/sushenghua/GardenAI"><img src="https://raw.githubusercontent.com/sushenghua/GardenAI/main/docs/screen-shot/assistant.png" alt="GardenCare assistant chat listing the tools it used" width="200"></a>
+</p>
+
+Vite + React + TypeScript + Tailwind app, served by the GardenCare server and packaged with Capacitor for iOS. Home cards and charts per node, a watering strategy editor that writes each rule back as a sentence, Bluetooth node setup (Web Bluetooth or the Capacitor plugin), firmware releases with approve, pause and withdraw, and plant photos.
+
+The assistant is a language model with tools over the garden data: per-day node history with the moisture rise after each watering, weather, strategies, and photo health reports. It has long-term memory in two forms: an LLM wiki of markdown notes it writes and reads between conversations (plants, nodes, what each watering did), which the gardener can edit, and RAG over uploaded guides (SQLite FTS5 with stemming, cited by guide and page, no embeddings), plus a job that merges a guide into the wiki with citations and undo. It runs in propose mode: it can only suggest strategy changes, wake intervals, or an extra watering, and the gardener approves each one. Limits are enforced in code, not in the prompt. The same tools are served over MCP for Claude Code, plus a separate MCP endpoint for a firmware developer agent. Claude by default; OpenAI, Gemini, OpenRouter, and Ollama through adapters.
 
 ### [`RoamoodDemo`](https://github.com/sushenghua/RoamoodDemo) — mobile app
 
