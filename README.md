@@ -17,6 +17,7 @@ I work on two tracks: embedded firmware (ESP32, STM32, nRF52) and web / mobile a
 **Web / mobile (TypeScript)**
 
 - [`GardenAI`](https://github.com/sushenghua/GardenAI) — React + Capacitor app and an LLM assistant for the garden system above: tools over MCP, a wiki memory, RAG over guides, and guardrails (propose only, limits in code).
+- [Western Corridor Urban Mining](https://sushenghua.github.io/BrownyHackathonUrbanMining/) — one-day civic hackathon project (team of 6, full-stack developer): a map tool for Auckland Council estimating recoverable building materials from houses before demolition. Demo video.
 - [trip-planner-map.vercel.app](https://trip-planner-map.vercel.app) — live Next.js and Mapbox trip planner. Works on phone-sized screens.
 - [usgaweb.vercel.app/students](https://usgaweb.vercel.app/students) — live student grade analysis site with sample data. Sign in with user `admin`, password `admin`.
 - [`application_ui`](https://github.com/sushenghua/application_ui) — screenshots from shipped and recent apps, including some older native iOS and Android work.
@@ -46,12 +47,12 @@ The pinned repos on [github.com/sushenghua](https://github.com/sushenghua) shoul
 | Frontend | TypeScript, JavaScript, React, Next.js, HTML5, CSS3, Tailwind CSS |
 | Mobile | Capacitor (iOS / Android), React Native + Expo (dev client, EAS) |
 | UI engineering | Design systems, component libraries, accessible and responsive UI, form validation (Zod) |
-| State and data | React Query, Zustand, D3.js, Mapbox GL JS, React Flow |
+| State and data | React Query, Zustand, D3.js, Mapbox GL JS, MapLibre, React Flow |
 | Testing and QA | Vitest unit tests with CI coverage gates, fast-check property-based tests, MSW request mocking, Playwright E2E, Lighthouse performance audits |
 | AI features | Claude API tool use with prompt caching, OpenAI-compatible adapters, MCP servers (Streamable HTTP), vision analysis of photos, SQLite FTS5 retrieval |
 | AI-assisted development | Claude Code and other AI coding assistants for project planning, iterative development, automated testing, issue tracking, and CI/CD integration |
 | Backend and APIs | Node.js, Python (FastAPI), RESTful APIs, GraphQL, JWT and session authentication, API contract design |
-| Data | MySQL, MongoDB, Redis, SQLite; schema design, indexing, aggregation |
+| Data | MySQL, PostgreSQL + PostGIS, MongoDB, Redis, SQLite; schema design, indexing, aggregation |
 | Cloud and DevOps | AWS (EC2, VPC, ALB, RDS, CloudFormation), Docker, CI/CD, Git, Linux |
 
 ---
@@ -196,6 +197,14 @@ React Native + TypeScript app for the Roamood device, built with an Expo custom 
 </p>
 
 A self-hosted Next.js parental-control console and a Capacitor companion app (iOS so far), paired with the ESP32-C6 firmware above. The console has a router client interface with UniFi and Asus implementations, cookie-session auth with router credentials stored encrypted, and a device matcher that scores hostname, OUI, and vendor so a device keeps its identity when its MAC address changes. The repo holds screenshots of both apps.
+
+### Western Corridor Urban Mining — [live page](https://sushenghua.github.io/BrownyHackathonUrbanMining/)
+
+<p align="center">
+  <a href="https://sushenghua.github.io/BrownyHackathonUrbanMining/"><img src="https://raw.githubusercontent.com/sushenghua/BrownyHackathonUrbanMining/main/assets/poster.jpg" alt="Materials Explorer map of station catchment areas along Auckland's Western Rail Corridor" width="640"></a>
+</p>
+
+Built in one day at the Auckland CivicTech Hackathon (October 2026) for Auckland Council's construction and demolition waste challenge. I worked as a full-stack developer in a team of 6. Houses along the Western Rail Corridor hold reusable timber, roofing, bricks, metals, doors and windows, but nobody could see how much or where, so most of it ends up as waste. The Materials Explorer lets Council and recovery operators pick a station catchment, local board or ward and see expected recoverable materials (reuse vs recycling) and an indicative value, then zoom in to any house. Every figure is also served as JSON / GeoJSON. Next.js, TypeScript, Tailwind, MapLibre, FastAPI, PostgreSQL + PostGIS, Docker. The [repo](https://github.com/sushenghua/BrownyHackathonUrbanMining) holds the project page and demo video.
 
 ### Trip Planner Map — [trip-planner-map.vercel.app](https://trip-planner-map.vercel.app)
 
