@@ -12,6 +12,7 @@ I work on two tracks: embedded firmware (ESP32, STM32, nRF52) and web / mobile a
 - [`RoamoodDemo`](https://github.com/sushenghua/RoamoodDemo) — handheld audio device with real-time DSP on an STM32H750 and an ESP32-S3 front end. Docs, bench measurements, and two videos.
 - [`CoolingDockNRF`](https://github.com/sushenghua/CoolingDockNRF) — Zephyr / nRF52832 port of a product firmware, with host-run unit and integration tests, a Python HIL smoke test, and a PPK2 power write-up. The product it came from is [`CoolingDockDemo`](https://github.com/sushenghua/CoolingDockDemo): ESP32-C3 firmware, a Capacitor app, enclosure photos, and power captures.
 - [`InternetConnectionControlDemo`](https://github.com/sushenghua/InternetConnectionControlDemo) — ESP32-C6 device that controls home routers, plus a web console and a mobile app. Docs and screenshots.
+- [`MazeRoute`](https://github.com/sushenghua/MazeRoute) — real-time path planning and steering through irregular obstacles, in a browser app, a C++23 port, and live on an ESP32-S3 inside a 16.7 ms frame. 192,300 recorded test missions with 0 failures, and a demo video.
 
 **Web / mobile (TypeScript)**
 
@@ -20,7 +21,7 @@ I work on two tracks: embedded firmware (ESP32, STM32, nRF52) and web / mobile a
 - [usgaweb.vercel.app/students](https://usgaweb.vercel.app/students) — live student grade analysis site with sample data. Sign in with user `admin`, password `admin`.
 - [`application_ui`](https://github.com/sushenghua/application_ui) — screenshots from shipped and recent apps, including some older native iOS and Android work.
 
-The pinned repos on [github.com/sushenghua](https://github.com/sushenghua) should match this list: `GardenAI`, `RoamoodDemo`, `CoolingDockNRF`, `CoolingDockDemo`, `InternetConnectionControlDemo`, `application_ui`, plus this index.
+The pinned repos on [github.com/sushenghua](https://github.com/sushenghua) should match this list: `GardenAI`, `RoamoodDemo`, `CoolingDockNRF`, `CoolingDockDemo`, `InternetConnectionControlDemo`, `MazeRoute`, `application_ui`, plus this index.
 
 ---
 
@@ -132,6 +133,19 @@ The original product the nRF port above came from: a 3D-printed cooling dock for
 </p>
 
 An ESP32-C6 device (the "Minion") that logs into home routers through their admin APIs and enforces a daily online-time budget per child at the MAC-filter level. One command interpreter serves HTTP, WebSocket, and BLE, so the web console and the phone app send the same commands. The repo holds docs and screenshots. The web and mobile apps are described in the web / mobile section below.
+
+### [`MazeRoute`](https://github.com/sushenghua/MazeRoute)
+
+<p align="center">
+  <a href="https://github.com/sushenghua/MazeRoute"><img src="https://raw.githubusercontent.com/sushenghua/MazeRoute/main/media/poster.jpg" alt="MazeRoute live view computed on an ESP32-S3: the agent has reached B after re-planning around a dropped obstacle, with the state machine, per-frame chip cost, on-chip benchmark and test suite" width="640"></a>
+</p>
+
+A car-like agent drives from A to B through irregular, concave obstacles while new ones are dropped in its way. It plans for its own footprint on inflated grids (coarse, fine, then a 1 px escape), re-plans around every drop, and always ends in `ARRIVED` or an honest `FAILED`: every state has a deadline, a progress watchdog catches stalls, and recovery escalates in bounded steps. A* and grid builds are time-sliced so each frame stays under 16.7 ms.
+
+- Three implementations of one simulation core: vanilla JS + canvas in the browser, a C++23 port (10 to 20 times faster, matched run for run), and a single-precision core on an ESP32-S3 with a web page that draws the chip's output over USB.
+- Verified: 192,300 recorded missions across all four environments with 0 failures; on the chip, 0 of 10,065 real-time frames over 16.7 ms (worst 14.8 ms).
+
+Watch it run: the [repo README](https://github.com/sushenghua/MazeRoute#readme) links a demo video of missions computed on the ESP32-S3.
 
 ### [`IoT_ESP32_Dehumidifier`](https://github.com/sushenghua/IoT_ESP32_Dehumidifier)
 
