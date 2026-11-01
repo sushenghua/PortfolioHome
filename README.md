@@ -146,7 +146,7 @@ A car-like agent drives from A to B through irregular, concave obstacles while n
 - Three implementations of one simulation core: vanilla JS + canvas in the browser, a C++23 port (10 to 20 times faster, matched run for run), and a single-precision core on an ESP32-S3 with a web page that draws the chip's output over USB.
 - Verified: 192,300 recorded missions across all four environments with 0 failures; on the chip, 0 of 10,065 real-time frames over 16.7 ms (worst 14.8 ms).
 
-Watch it run: the [repo README](https://github.com/sushenghua/MazeRoute#readme) links a demo video of missions computed on the ESP32-S3.
+Watch it run: the [repo README](https://github.com/sushenghua/MazeRoute#readme) embeds a demo video of missions computed on the ESP32-S3.
 
 ### [`IoT_ESP32_Dehumidifier`](https://github.com/sushenghua/IoT_ESP32_Dehumidifier)
 
