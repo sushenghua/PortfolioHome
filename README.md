@@ -66,7 +66,8 @@ The pinned repos on [github.com/sushenghua](https://github.com/sushenghua) shoul
   <a href="https://github.com/sushenghua/GardenAI"><img src="https://raw.githubusercontent.com/sushenghua/GardenAI/main/docs/hardware/nrf-node.jpg" alt="nRF52840 node with solar lid, Li-ion cell, MAX3485, SHT31, and RS485 soil probe" height="320"></a>
 </p>
 <p align="center">
-  <a href="https://github.com/sushenghua/GardenAI"><img src="https://raw.githubusercontent.com/sushenghua/GardenAI/main/docs/hardware/lppc-node.jpg" alt="Hand-wired ESP32-C6 watering node with a 12 V battery pack, pump, and BTS7960 driver" width="430"></a>
+  <a href="https://github.com/sushenghua/GardenAI"><img src="https://raw.githubusercontent.com/sushenghua/GardenAI/main/docs/hardware/lppc-pcb.jpg" alt="Watering node PCB v6 with an ESP32-S3 DevKitC-1 and headers for two pump drivers" height="300"></a>
+  <a href="https://github.com/sushenghua/GardenAI"><img src="https://raw.githubusercontent.com/sushenghua/GardenAI/main/docs/hardware/nrf-pcb.jpg" alt="nRF52840 sensor node carrier PCB" height="300"></a>
 </p>
 
 Battery and solar garden nodes report over MQTT to a Python server that decides when to water; the device does not decide on its own.
@@ -74,6 +75,7 @@ Battery and solar garden nodes report over MQTT to a Python server that decides 
 - Nodes: ESP32-C6 watering node (12 V pump, BTS7960, RS485 soil probe, pump guard and cycle watchdog), ESP32-S3 vertical farm controller, and nRF52840 solar sensors (Zephyr, MCUboot) behind an ESP32-S3 BLE gateway.
 - Server: strategies over any node's readings, rain forecast, and an evaporation water balance; nodes keep an offline copy.
 - Signed OTA for every node type, BLE included: canary first, stable after approval, rollback on the node.
+- Two fabricated PCBs (ESP32-S3 watering board, nRF52840 carrier), generated from Python scripts with a small grid router.
 - Tests: 292 server, 81 client, 35 firmware host tests.
 
 ### [`RoamoodDemo`](https://github.com/sushenghua/RoamoodDemo) — hardware and firmware
