@@ -64,10 +64,12 @@ The pinned repos on [github.com/sushenghua](https://github.com/sushenghua) shoul
 <p align="center">
   <a href="https://github.com/sushenghua/GardenAI"><img src="https://raw.githubusercontent.com/sushenghua/GardenAI/main/docs/deployment/balcony.jpg" alt="Solar nRF52840 sensor node on a balcony railing next to potted blueberries" height="320"></a>
   <a href="https://github.com/sushenghua/GardenAI"><img src="https://raw.githubusercontent.com/sushenghua/GardenAI/main/docs/hardware/nrf-node.jpg" alt="nRF52840 node with solar lid, Li-ion cell, MAX3485, SHT31, and RS485 soil probe" height="320"></a>
+  <a href="https://github.com/sushenghua/GardenAI"><img src="https://raw.githubusercontent.com/sushenghua/GardenAI/main/docs/deployment/plantcam.jpg" alt="Solar camera node at the edge of a blackberry pot" height="320"></a>
 </p>
 <p align="center">
   <a href="https://github.com/sushenghua/GardenAI"><img src="https://raw.githubusercontent.com/sushenghua/GardenAI/main/docs/hardware/lppc-pcb.jpg" alt="Watering node PCB v6 with an ESP32-S3 DevKitC-1 and headers for two pump drivers" height="300"></a>
   <a href="https://github.com/sushenghua/GardenAI"><img src="https://raw.githubusercontent.com/sushenghua/GardenAI/main/docs/hardware/nrf-pcb.jpg" alt="nRF52840 sensor node carrier PCB" height="300"></a>
+  <a href="https://github.com/sushenghua/GardenAI"><img src="https://raw.githubusercontent.com/sushenghua/GardenAI/main/docs/hardware/lppc-enclosure.jpg" alt="Watering node v6 board in an outdoor enclosure with battery, pump and soil probe" height="300"></a>
 </p>
 
 Battery and solar garden nodes report over MQTT to a Python server that decides when to water; the device does not decide on its own.
