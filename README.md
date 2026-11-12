@@ -70,6 +70,7 @@ The pinned repos on [github.com/sushenghua](https://github.com/sushenghua) shoul
   <a href="https://github.com/sushenghua/GardenAI"><img src="https://raw.githubusercontent.com/sushenghua/GardenAI/main/docs/hardware/lppc-pcb.jpg" alt="Watering node PCB with an ESP32-S3 DevKitC-1 and headers for two pump drivers" height="300"></a>
   <a href="https://github.com/sushenghua/GardenAI"><img src="https://raw.githubusercontent.com/sushenghua/GardenAI/main/docs/hardware/nrf-pcb.jpg" alt="nRF52840 sensor node carrier PCB" height="300"></a>
   <a href="https://github.com/sushenghua/GardenAI"><img src="https://raw.githubusercontent.com/sushenghua/GardenAI/main/docs/hardware/lppc-enclosure.jpg" alt="Watering node board in an outdoor enclosure with battery, pump and soil probe" height="300"></a>
+  <a href="https://github.com/sushenghua/GardenAI"><img src="https://raw.githubusercontent.com/sushenghua/GardenAI/main/docs/deployment/garden-bed.jpg" alt="Watering node PCB in its outdoor box on a raised garden bed, with the water bucket and drip line" height="300"></a>
 </p>
 
 Battery and solar garden nodes report over MQTT to a Python server that decides when to water; the device does not decide on its own.
