@@ -79,7 +79,7 @@ Battery and solar garden nodes report over MQTT to a Python server that decides 
 - Server: strategies over any node's readings, rain forecast, and an evaporation water balance; nodes keep an offline copy.
 - Signed OTA for every node type, BLE included: canary first, stable after approval, rollback on the node.
 - Two fabricated PCBs (ESP32-S3 watering board, nRF52840 carrier), generated from Python scripts with a small grid router.
-- Tests: 292 server, 81 client, 35 firmware host tests.
+- Tests: 324 server, 187 client, 74 firmware host tests.
 
 ### [`RoamoodDemo`](https://github.com/sushenghua/RoamoodDemo) — hardware and firmware
 
