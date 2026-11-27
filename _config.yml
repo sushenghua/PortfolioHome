@@ -1,0 +1,19 @@
+title: Shenghua (Woody) Su
+description: Engineering portfolio
+theme: jekyll-theme-primer
+plugins:
+  - jekyll-relative-links
+relative_links:
+  enabled: true
+  collections: false
+defaults:
+  - scope:
+      path: "WEB.md"
+    values:
+      permalink: /web/
+  - scope:
+      path: "EMBEDDED.md"
+    values:
+      permalink: /embedded/
+exclude:
+  - LICENSE
