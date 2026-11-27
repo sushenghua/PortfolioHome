@@ -192,7 +192,7 @@ React + TypeScript app (Capacitor for iOS): readings and charts, strategy editor
   <a href="https://coursehub-two-pi.vercel.app/"><img src="images/coursehub-lesson-ta.png" alt="CourseHub lesson player with the course syllabus and the teaching assistant panel open" width="400"></a>
 </p>
 
-An online course site in the style of Coursera. Learners take video, reading, and quiz lessons, track progress, and earn certificates. Instructors write and publish courses. An AI teaching assistant on each lesson answers from the course material and only hints on quizzes the learner hasn't passed. React + TypeScript, FastAPI, PostgreSQL. Sign in with `learner@example.com` or `instructor@example.com`, password `password123`.
+An online course site following mainstream online learning platforms. Learners take video, reading, and quiz lessons, track progress, and earn certificates. Instructors write and publish courses. An AI teaching assistant on each lesson answers from the course material and only hints on quizzes the learner hasn't passed. React + TypeScript, FastAPI, PostgreSQL. Sign in with `learner@example.com` or `instructor@example.com`, password `password123`.
 
 ### [`RoamoodDemo`](https://github.com/sushenghua/RoamoodDemo) — mobile app
 
