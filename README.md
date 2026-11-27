@@ -38,4 +38,3 @@ The pinned repos on [github.com/sushenghua](https://github.com/sushenghua) shoul
 
 - **Email** [shenghua.su@gmail.com](mailto:shenghua.su@gmail.com)
 - **GitHub** [@sushenghua](https://github.com/sushenghua)
-- **Location** Auckland, New Zealand · open work visa to Aug 2028, no sponsorship needed

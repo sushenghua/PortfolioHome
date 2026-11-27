@@ -137,4 +137,3 @@ Earlier ESP-IDF C++ project (2023). Two SHT3x sensors, each switching its own fa
 
 - **Email** [shenghua.su@gmail.com](mailto:shenghua.su@gmail.com)
 - **GitHub** [@sushenghua](https://github.com/sushenghua)
-- **Location** Auckland, New Zealand · open work visa to Aug 2028, no sponsorship needed

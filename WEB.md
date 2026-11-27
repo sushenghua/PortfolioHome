@@ -109,4 +109,3 @@ Screenshots from apps I have built: Roamood, the parental-control console, the C
 
 - **Email** [shenghua.su@gmail.com](mailto:shenghua.su@gmail.com)
 - **GitHub** [@sushenghua](https://github.com/sushenghua)
-- **Location** Auckland, New Zealand · open work visa to Aug 2028, no sponsorship needed
