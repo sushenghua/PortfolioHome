@@ -1,4 +1,4 @@
-# Woody Shenghua Su — Engineering Portfolio
+# Shenghua (Woody) Su — Engineering Portfolio
 
 Auckland, New Zealand · [shenghua.su@gmail.com](mailto:shenghua.su@gmail.com) · GitHub [@sushenghua](https://github.com/sushenghua)
 
