@@ -224,7 +224,7 @@ Built in one day at the Auckland CivicTech Hackathon (October 2026) for Auckland
 ### Trip Planner Map — [trip-planner-map.vercel.app](https://trip-planner-map.vercel.app)
 
 <p align="center">
-  <a href="https://trip-planner-map.vercel.app"><img src="images/trip-planner.jpg" alt="Trip planner on a desktop with the itinerary pane open and a seven-stop Christchurch route on the map" height="380"></a>
+  <a href="https://trip-planner-map.vercel.app"><img src="images/trip-planner.jpg" alt="Trip planner on a desktop with a two-day Queenstown itinerary and a stop card showing its photo, description, and actions" height="380"></a>
   <a href="https://trip-planner-map.vercel.app"><img src="images/trip-planner-phone.jpg" alt="Trip planner on a phone with the itinerary as a bottom sheet under the map" height="380"></a>
 </p>
 
