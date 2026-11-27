@@ -224,12 +224,11 @@ Built in one day at the Auckland CivicTech Hackathon (October 2026) for Auckland
 ### Trip Planner Map — [trip-planner-map.vercel.app](https://trip-planner-map.vercel.app)
 
 <p align="center">
-  <a href="https://trip-planner-map.vercel.app"><img src="https://raw.githubusercontent.com/sushenghua/application_ui/main/images/tpm_ui2.jpg" alt="Trip planner map on a phone" width="240"></a>
+  <a href="https://trip-planner-map.vercel.app"><img src="images/trip-planner.jpg" alt="Trip planner on a desktop with the itinerary pane open and a seven-stop Christchurch route on the map" height="380"></a>
+  <a href="https://trip-planner-map.vercel.app"><img src="images/trip-planner-phone.jpg" alt="Trip planner on a phone with the itinerary as a bottom sheet under the map" height="380"></a>
 </p>
 
 Next.js, Mapbox GL JS, MongoDB, React Query, Zustand. Add stops, see the route, and on a phone the trip list becomes a bottom sheet. AI trip suggestions are available after sign-in.
-
-<!-- TODO image: desktop screenshot of the trip planner with the trip pane expanded and a full route visible, about 1200 px wide, saved as images/trip-planner.png in this repo. -->
 
 ### Student Grade Analysis (SGA) — [usgaweb.vercel.app/students](https://usgaweb.vercel.app/students)
 
