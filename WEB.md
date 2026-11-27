@@ -36,8 +36,8 @@ React + TypeScript app (Capacitor for iOS): readings and charts, strategy editor
 ### CourseHub — [coursehub-two-pi.vercel.app](https://coursehub-two-pi.vercel.app/)
 
 <p align="center">
-  <a href="https://coursehub-two-pi.vercel.app/courses"><img src="images/coursehub-catalog.png" alt="CourseHub catalog with search, category and level filters, and course cards" width="400"></a>
-  <a href="https://coursehub-two-pi.vercel.app/"><img src="images/coursehub-lesson-ta.png" alt="CourseHub lesson player with the course syllabus and the teaching assistant panel open" width="400"></a>
+  <a href="https://coursehub-two-pi.vercel.app/courses"><img src="https://raw.githubusercontent.com/sushenghua/PortfolioHome/main/images/coursehub-catalog.png" alt="CourseHub catalog with search, category and level filters, and course cards" width="400"></a>
+  <a href="https://coursehub-two-pi.vercel.app/"><img src="https://raw.githubusercontent.com/sushenghua/PortfolioHome/main/images/coursehub-lesson-ta.png" alt="CourseHub lesson player with the course syllabus and the teaching assistant panel open" width="400"></a>
 </p>
 
 An online course site following mainstream online learning platforms. Learners take video, reading, and quiz lessons, track progress, and earn certificates. Instructors write and publish courses. An AI teaching assistant on each lesson answers from the course material and only hints on quizzes the learner hasn't passed. React + TypeScript, FastAPI, PostgreSQL. Sign in with `learner@example.com` or `instructor@example.com`, password `password123`.
@@ -72,8 +72,8 @@ Built in one day at the Auckland CivicTech Hackathon (October 2026) for Auckland
 ### Trip Planner Map — [trip-planner-map.vercel.app](https://trip-planner-map.vercel.app)
 
 <p align="center">
-  <a href="https://trip-planner-map.vercel.app"><img src="images/trip-planner.jpg" alt="Trip planner on a desktop with a two-day Queenstown itinerary and a stop card showing its photo, description, and actions" height="380"></a>
-  <a href="https://trip-planner-map.vercel.app"><img src="images/trip-planner-phone.jpg" alt="Trip planner on a phone with the itinerary as a bottom sheet under the map" height="380"></a>
+  <a href="https://trip-planner-map.vercel.app"><img src="https://raw.githubusercontent.com/sushenghua/PortfolioHome/main/images/trip-planner.jpg" alt="Trip planner on a desktop with a two-day Queenstown itinerary and a stop card showing its photo, description, and actions" height="380"></a>
+  <a href="https://trip-planner-map.vercel.app"><img src="https://raw.githubusercontent.com/sushenghua/PortfolioHome/main/images/trip-planner-phone.jpg" alt="Trip planner on a phone with the itinerary as a bottom sheet under the map" height="380"></a>
 </p>
 
 Next.js, Mapbox GL JS, MongoDB, React Query, Zustand. Add stops, see the route, and on a phone the trip list becomes a bottom sheet. AI trip suggestions are available after sign-in.
