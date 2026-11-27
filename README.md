@@ -17,6 +17,7 @@ I work on two tracks: embedded firmware (ESP32, STM32, nRF52) and web / mobile a
 **Web / mobile (TypeScript)**
 
 - [`GardenAI`](https://github.com/sushenghua/GardenAI) — React + Capacitor app and an LLM assistant for the garden system above: tools over MCP, a wiki memory, RAG over guides, and guardrails (propose only, limits in code).
+- [CourseHub](https://coursehub-two-pi.vercel.app/) — live online course site: catalog, video / reading / quiz lessons, progress and certificates, an instructor course editor, and an AI teaching assistant on every lesson. React + FastAPI + PostgreSQL. Sign in with `learner@example.com` or `instructor@example.com`, password `password123`.
 - [Western Corridor Urban Mining](https://sushenghua.github.io/BrownyHackathonUrbanMining/) — one-day civic hackathon project (team of 6, full-stack developer): a map tool for Auckland Council estimating recoverable building materials from houses before demolition. Demo video.
 - [trip-planner-map.vercel.app](https://trip-planner-map.vercel.app) — live Next.js and Mapbox trip planner. Works on phone-sized screens.
 - [usgaweb.vercel.app/students](https://usgaweb.vercel.app/students) — live student grade analysis site with sample data. Sign in with user `admin`, password `admin`.
@@ -202,6 +203,17 @@ React Native + TypeScript app for the Roamood device, built with an Expo custom 
 </p>
 
 A self-hosted Next.js parental-control console and a Capacitor companion app (iOS so far), paired with the ESP32-C6 firmware above. The console has a router client interface with UniFi and Asus implementations, cookie-session auth with router credentials stored encrypted, and a device matcher that scores hostname, OUI, and vendor so a device keeps its identity when its MAC address changes. The repo holds screenshots of both apps.
+
+### CourseHub — [coursehub-two-pi.vercel.app](https://coursehub-two-pi.vercel.app/)
+
+<p align="center">
+  <a href="https://coursehub-two-pi.vercel.app/courses"><img src="images/coursehub-catalog.png" alt="CourseHub catalog with search, category and level filters, and course cards" width="400"></a>
+  <a href="https://coursehub-two-pi.vercel.app/"><img src="images/coursehub-lesson-ta.png" alt="CourseHub lesson player with the course syllabus and the teaching assistant panel open" width="400"></a>
+</p>
+
+An online course site in the style of Coursera. Learners browse and search a catalog, enroll, work through video, reading, and quiz lessons, take notes, ask questions in per-lesson Q&A, and earn a certificate when they finish. Instructors write and publish courses in an editor, answer questions, and see per-course analytics. Sign in with `learner@example.com` (a learner partway through two courses) or `instructor@example.com`, password `password123`.
+
+React 19 + TypeScript (Vite, React Query, Tailwind) on a FastAPI + PostgreSQL back end, both written against one API contract doc. Deployed on Vercel, Render, and Neon. Vercel forwards `/api/*` to Render, so the browser talks to one origin. The teaching assistant streams answers from an OpenAI model and is grounded in the course's own material, which it treats as data, not instructions. For a quiz the learner has not passed, the answers are left out of its context in code, so it can only hint. Requests are capped per learner per day. Tests: pytest on the API, Vitest and Testing Library on the front end. The API runs on Render's free tier, so the first request after a quiet spell can take up to a minute while it wakes.
 
 ### Western Corridor Urban Mining — [live page](https://sushenghua.github.io/BrownyHackathonUrbanMining/)
 
