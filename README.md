@@ -192,9 +192,7 @@ React + TypeScript app (Capacitor for iOS): readings and charts, strategy editor
   <a href="https://coursehub-two-pi.vercel.app/"><img src="images/coursehub-lesson-ta.png" alt="CourseHub lesson player with the course syllabus and the teaching assistant panel open" width="400"></a>
 </p>
 
-An online course site in the style of Coursera. Learners browse and search a catalog, enroll, work through video, reading, and quiz lessons, take notes, ask questions in per-lesson Q&A, and earn a certificate when they finish. Instructors write and publish courses in an editor, answer questions, and see per-course analytics. Sign in with `learner@example.com` (a learner partway through two courses) or `instructor@example.com`, password `password123`.
-
-React 19 + TypeScript (Vite, React Query, Tailwind) on a FastAPI + PostgreSQL back end, both written against one API contract doc. Deployed on Vercel, Render, and Neon. Vercel forwards `/api/*` to Render, so the browser talks to one origin. The teaching assistant streams answers from an OpenAI model and is grounded in the course's own material, which it treats as data, not instructions. For a quiz the learner has not passed, the answers are left out of its context in code, so it can only hint. Requests are capped per learner per day. Tests: pytest on the API, Vitest and Testing Library on the front end. The API runs on Render's free tier, so the first request after a quiet spell can take up to a minute while it wakes.
+An online course site in the style of Coursera. Learners take video, reading, and quiz lessons, track progress, and earn certificates. Instructors write and publish courses. An AI teaching assistant on each lesson answers from the course material and only hints on quizzes the learner hasn't passed. React + TypeScript, FastAPI, PostgreSQL. Sign in with `learner@example.com` or `instructor@example.com`, password `password123`.
 
 ### [`RoamoodDemo`](https://github.com/sushenghua/RoamoodDemo) — mobile app
 
